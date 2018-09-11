@@ -1,4 +1,5 @@
 ﻿using MonsterMVC.Clients;
+using MonsterMVC.Domain.Data;
 using MonsterMVC.Domain.DomainModel;
 using System;
 using System.Collections.Generic;
@@ -24,5 +25,6 @@ namespace MonsterMVC.Controllers
 
             return View(monster);
         }
+
     }
 }

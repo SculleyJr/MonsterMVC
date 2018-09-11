@@ -284,6 +284,8 @@
     <Content Include="Views\MonsterDataModels\Details.cshtml" />
     <Content Include="Views\MonsterDataModels\Edit.cshtml" />
     <Content Include="Views\MonsterDataModels\Index.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\MonsterDataModels\GetMonsterName.cshtml" />
     <Content Include="Views\Encounters\Delete.cshtml" />
     <Content Include="Views\Encounters\Details.cshtml" />
     <Content Include="Views\Encounters\Edit.cshtml" />

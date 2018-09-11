@@ -4,22 +4,59 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MonsterMVC.Clients;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
+using MonsterMVC.Domain.Data.Abstract;
+using MonsterMVC.Domain.DomainModel;
 
 namespace MonsterMVC.Controllers
 {
     public class MonsterDataModelsController : Controller
     {
         private MonsterDbContext db = new MonsterDbContext();
+        private readonly MonsterClient _monsterClient = new MonsterClient();
+
+
+        private MonsterDataModel monsterDataModel = new MonsterDataModel();
+
+        public async Task<ActionResult> GetMonster(int id)
+        {
+            var monster = await _monsterClient.GetMonster(id);
+
+            return View(monster);
+        }
+
+        public ActionResult SearchMonster()
+        {
+
+            return View(db.Monsters.ToList());
+        }
+
+//        public ActionResult GetMonsterName()
+//        {
+//            return View(db.Monsters.ToList());
+//        }
+
+       // [HttpGet]
+        public ActionResult GetMonsterName(string monsterName)
+        {
+            var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(monsterName));
+
+            // return RedirectToAction("SearchMonster", "MonsterDataModels", new { id = monsterDataModel.Name });
+            return View(monsterDataModels.ToList());
+        }
 
         // GET: MonsterDataModels
         public ActionResult Index()
         {
             return View(db.Monsters.ToList());
         }
+
+      
 
         // GET: MonsterDataModels/Details/5
         public ActionResult Details(int? id)
@@ -36,6 +73,7 @@ namespace MonsterMVC.Controllers
 
             return RedirectToAction("GetMonster", "Monster", new{id = monsterDataModel.UrlId});
         }
+
 
         // GET: MonsterDataModels/Create
         public ActionResult Create()
