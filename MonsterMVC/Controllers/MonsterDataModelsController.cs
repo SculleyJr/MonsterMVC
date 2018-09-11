@@ -7,6 +7,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using MonsterMVC.Clients;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
@@ -42,12 +43,31 @@ namespace MonsterMVC.Controllers
 //        }
 
        // [HttpGet]
-        public ActionResult GetMonsterName(string monsterName)
+        public ActionResult GetMonsterName(string searchBy, string search)
         {
-            var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(monsterName));
+            if (searchBy == "monsterName")
+            {
+                var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
+                return View(monsterDataModels.ToList());
+            }
 
-            // return RedirectToAction("SearchMonster", "MonsterDataModels", new { id = monsterDataModel.Name });
-            return View(monsterDataModels.ToList());
+            else //(searchBy == "challengeRating")
+            {
+                float newCr;
+                if (!(search.IsNullOrWhiteSpace()))
+                {
+                    newCr = float.Parse(search);
+                    var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(newCr));
+                    return View(monsterCR.ToList());
+                }
+                else
+                {
+                    var monsterCR = db.Monsters;
+                    return View(monsterCR.ToList());
+                }
+
+            }
+         
         }
 
         // GET: MonsterDataModels
