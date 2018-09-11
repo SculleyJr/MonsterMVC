@@ -1,5 +1,5 @@
-﻿@Html.BeginForm("GetMonsterName", "MonsterDataModelController", FormMethod.Post){ 
-
-<input type="text" name="monsterName" />
-<input type="submit" /><form action="/" method="post"></form>
-}
+﻿ @using (Html.BeginForm())
+ {
+     <p> Monster Name Search: @Html.TextBox("monsterName") <br/>
+         <input type="submit" value="Filter"/></p>
+ }

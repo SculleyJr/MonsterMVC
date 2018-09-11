@@ -30,17 +30,24 @@ namespace MonsterMVC.Controllers
             return View(monster);
         }
 
-        [HttpPost]
-        public ActionResult GetMonsterName(string monsterName)
+        public ActionResult SearchMonster()
         {
 
+            return View(db.Monsters.ToList());
+        }
 
+//        public ActionResult GetMonsterName()
+//        {
+//            return View(db.Monsters.ToList());
+//        }
 
-               var id = monsterDataModel.Id;
-                return RedirectToAction("GetMonster", "MonsterDataModelController", (id));
+       // [HttpGet]
+        public ActionResult GetMonsterName(string monsterName)
+        {
+            var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(monsterName));
 
-
-
+            // return RedirectToAction("SearchMonster", "MonsterDataModels", new { id = monsterDataModel.Name });
+            return View(monsterDataModels.ToList());
         }
 
         // GET: MonsterDataModels
