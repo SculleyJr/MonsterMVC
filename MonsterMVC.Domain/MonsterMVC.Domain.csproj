@@ -48,6 +48,7 @@
     <Compile Include="Data\ActiveMonster.cs" />
     <Compile Include="Data\Encounter.cs" />
     <Compile Include="Data\MonsterDataModel.cs" />
+    <Compile Include="Data\PartialModel.cs" />
     <Compile Include="DomainModel\Action.cs" />
     <Compile Include="DomainModel\Monster.cs" />
     <Compile Include="DomainModel\SpecialAbility.cs" />
