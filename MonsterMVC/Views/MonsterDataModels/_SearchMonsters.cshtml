@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MonsterMVC.Domain.Data.MonsterDataModel>
+﻿@using System.Web.UI.WebControls.Expressions
+@model IEnumerable<MonsterMVC.Domain.Data.MonsterDataModel>
 
 @using (Html.BeginForm("SearchMonsters", "MonsterDataModels", FormMethod.Get))
 {
@@ -39,9 +40,8 @@
                 @Html.DisplayFor(modelItem => item.UrlId)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Add to Encounter", "Create", "ActiveMonsters", new { UrlId = item.UrlId, EncounterId = 1 }, null)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+
             </td>
         </tr>
     }
