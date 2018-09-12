@@ -40,13 +40,16 @@
                 @Html.DisplayFor(modelItem => item.UrlId)
             </td>
             <td>
-                @Html.ActionLink("Add to Encounter", "Create", "ActiveMonsters", new { UrlId = item.UrlId, EncounterId = 1 }, null)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                @Html.ActionLink("Add to Encounter", "Create", "ActiveMonsters", new { UrlId = item.UrlId, EncounterId = 1 }, null)
 
             </td>
         </tr>
     }
 
 </table>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
         $('.searchSubmit').click(function () {
