@@ -8,24 +8,54 @@
 }
 
 <h2>Details</h2>
-@Html.Partial("GetMonsterName" , new List<MonsterDataModel>())
-<div>
-    <h4>Encounter</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
-</div>
-<table>
-    @foreach (var item in Model.ActiveMonsters)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Monster.Name)
-            </td>
-        </tr>
+
+<div id="partial">
+    @{
+        Html.RenderAction("SearchMonsters", "MonsterDataModels", new{ searchBy = "monsterName", search ="Zombie"});
     }
-</table>
+</div>
+    <div>
+        <h4>Encounter</h4>
+        <hr />
+        <dl class="dl-horizontal"></dl>
+    </div>
+    <table>
+        @foreach (var item in Model.ActiveMonsters)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Monster.Name)
+                </td>
+            </tr>
+        }
+    </table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('.searchSubmit').click(function () {
+            console.log(true);
+            var searchByName = $('#searchByName').val();
+            var searchByCR = $('#searchByCR').val();
+            var search = $('input#search').val();
+
+            var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
+
+                
+            url = url.replace("-parameter", "monsterName");
+                
+                
+            url = url.replace("sempar", search);
+
+            console.log(url);
+            $('#partial').load(url);
+        });
+    });
+</script>
+
