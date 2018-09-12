@@ -47,5 +47,25 @@
     }
 
 </table>
+<script>
+    $(document).ready(function () {
+        $('.searchSubmit').click(function () {
+            console.log(true);
+            //var searchByName = $('#searchByName').val();
+            //var searchByCR = $('#searchByCR').val();
+            var search = $('input#search').val();
 
+            var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
+
+
+            url = url.replace("-parameter", "monsterName");
+
+
+            url = url.replace("sempar", search);
+
+            console.log(url);
+            $('#partial').load(url);
+        });
+    });
+</script>
 
