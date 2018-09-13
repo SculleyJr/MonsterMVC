@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MonsterMVC.Data
 {
-    class MonsterDbInitializer : DropCreateDatabaseIfModelChanges<MonsterDbContext>
+    class MonsterDbInitializer : DropCreateDatabaseAlways<MonsterDbContext>
     {
         protected override void Seed(MonsterDbContext context)
         {
@@ -39,13 +39,6 @@ namespace MonsterMVC.Data
                 Name = "Adult Blue Dracolich",
                 ChallengeRating = 17,
                 UrlId = 4
-            });
-            context.Monsters.Add(new MonsterDataModel()
-            {
-                Id = 5,
-                Name = "Adult Blue Dracolich",
-                ChallengeRating = 17,
-                UrlId = 5
             });
             context.Monsters.Add(new MonsterDataModel()
             {

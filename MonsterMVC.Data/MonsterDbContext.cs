@@ -9,13 +9,13 @@ namespace MonsterMVC.Data
         public MonsterDbContext() : base("MonsterDataBase")
         {
             //Drop the database and recreate on each run
-            Database.SetInitializer(new DropCreateDatabaseAlways<MonsterDbContext>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<MonsterDbContext>());
             // Create the DB if it doesn't exist.  
-            Database.SetInitializer(new CreateDatabaseIfNotExists<MonsterDbContext>());
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<MonsterDbContext>());
             //Will Drop and recreate if model changes.
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MonsterDbContext>());
             //Custom Initializer
-           // Database.SetInitializer(new MonsterDbInitializer());
+            Database.SetInitializer(new MonsterDbInitializer());
         }
 
         public DbSet<Encounter> Encounters { get; set; }
