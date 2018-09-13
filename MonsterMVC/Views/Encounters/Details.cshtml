@@ -34,6 +34,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.HealthPoints)
             </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "ActiveMonsters", new { id = item.Id }, null)
+            </td>
 
             @{ i = item.MonsterId;
                 ; }

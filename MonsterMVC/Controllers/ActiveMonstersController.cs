@@ -92,7 +92,7 @@ namespace MonsterMVC.Controllers
             {
                 db.Entry(activeMonster).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Encounters", new { id = activeMonster.EncounterId });
             }
             ViewBag.EncounterId = new SelectList(db.Encounters, "Id", "Id", activeMonster.EncounterId);
             ViewBag.MonsterId = new SelectList(db.Monsters, "Id", "Name", activeMonster.MonsterId);
