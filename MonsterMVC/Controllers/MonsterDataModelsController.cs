@@ -37,18 +37,13 @@ namespace MonsterMVC.Controllers
             return View(db.Monsters.ToList());
         }
 
-//        public ActionResult GetMonsterName()
-//        {
-//            return View(db.Monsters.ToList());
-//        }
-
        // [HttpGet]
-        public ActionResult GetMonsterName(string searchBy, string search)
+        public ActionResult SearchMonsters(string searchBy, string search)
         {
             if (searchBy == "monsterName")
             {
                 var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
-                return View(monsterDataModels.ToList());
+                return PartialView("_SearchMonsters",monsterDataModels.ToList());
             }
 
             else //(searchBy == "challengeRating")
@@ -58,12 +53,12 @@ namespace MonsterMVC.Controllers
                 {
                     newCr = float.Parse(search);
                     var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(newCr));
-                    return View(monsterCR.ToList());
+                    return PartialView("_SearchMonsters",monsterCR.ToList());
                 }
                 else
                 {
                     var monsterCR = db.Monsters;
-                    return View(monsterCR.ToList());
+                    return PartialView("_SearchMonsters", monsterCR.ToList());
                 }
 
             }
