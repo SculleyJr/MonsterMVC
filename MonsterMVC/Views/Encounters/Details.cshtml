@@ -24,6 +24,7 @@
 </div>
 <table>
     @{int i;}
+
     @foreach (var item in Model.ActiveMonsters)
     {
         <tr>
@@ -41,17 +42,21 @@
                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                 crossorigin="anonymous"></script>
         <script>
-            $(document).ready(function() {
+            var list = [];
+            $(document).ready(function () {
                 var search = @(i);
 
                 var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
 
                 url = url.replace("urlId", search);
-
-                $.get(url, function(data){ 
-                    $('#MonsterCards').append(data);
-                });
                 
+                if (jQuery.inArray(@(i), list) === -1) {
+                    $.get(url, function(data){ 
+                        $('#MonsterCards').append(data);  
+                    });
+                }
+                list.push(@(i));
+                console.log(list.length);
             });
         </script>
     }
