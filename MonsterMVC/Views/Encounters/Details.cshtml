@@ -14,25 +14,47 @@
         Html.RenderAction("SearchMonsters", "MonsterDataModels", new{ searchBy = "monsterName", search ="Zombie"});
     }
 </div>
-    <div>
-        <h4>Encounter</h4>
-        <hr />
-        <dl class="dl-horizontal"></dl>
-    </div>
-    <table>
-        @foreach (var item in Model.ActiveMonsters)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Monster.Name)
-                </td>
-            </tr>
-        }
-    </table>
+<div>
+    <h4>Encounter</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+</div>
+<div id="MonsterCards">
+
+</div>
+<table>
+    @{int i;}
+    @foreach (var item in Model.ActiveMonsters)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monster.Name)
+            </td>
+
+            @{ i = item.MonsterId;
+                ; }
+        </tr>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                var search = @(i);
+
+                var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
+
+                url = url.replace("urlId", search);
+
+                $.get(url, function(data){ 
+                    $('#MonsterCards').append(data);
+                });
+                
+            });
+        </script>
+    }
+</table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
-
-
 

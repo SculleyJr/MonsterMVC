@@ -23,7 +23,7 @@ namespace MonsterMVC.Controllers
         {
             var monster = await _monsterClient.GetMonster(id);
 
-            return View(monster);
+            return PartialView("_MonsterCard", monster);
         }
 
     }
