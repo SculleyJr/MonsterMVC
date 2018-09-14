@@ -11,7 +11,7 @@
 
 <div id="partial">
     @{
-        Html.RenderAction("SearchMonsters", "MonsterDataModels", new{ searchBy = "monsterName", search ="Zombie"});
+        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Zombie" });
     }
 </div>
 <div>
@@ -19,12 +19,10 @@
     <hr />
     <dl class="dl-horizontal"></dl>
 </div>
-<div id="MonsterCards">
 
-</div>
 <table>
     @{int i;}
-    @{ int hp;}
+
     @foreach (var item in Model.ActiveMonsters)
     {
         <tr>
@@ -32,20 +30,10 @@
                 @Html.DisplayFor(modelItem => item.Monster.Name)
             </td>
             <td>
-
-             
                 @Html.DisplayFor(modelItem => item.HealthPoints)
             </td>
             <td>
-                @{
-                    hp = item.HealthPoints;
-                    ;
-                }
-                <form action="/action_page.php">
-                    Damage: <input type="number" name="damage"><br>
-                    <input type="button" value="damage" onclick="location.href = '@Url.Action("AlterHitPoints", "Encounters")'">
-                </form>
-                
+                @Html.ActionLink("Edit", "Edit", "ActiveMonsters", new { id = item.Id }, null)
             </td>
 
             @{ i = item.MonsterId;
@@ -55,23 +43,29 @@
                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                 crossorigin="anonymous"></script>
         <script>
-            $(document).ready(function() {
+            var list = [];
+            $(document).ready(function () {
                 var search = @(i);
 
                 var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
 
                 url = url.replace("urlId", search);
 
-                $.get(url, function(data){ 
-                    $('#MonsterCards').append(data);
-                });
-                
+                if (jQuery.inArray(@(i), list) === -1) {
+                    $.get(url, function(data){
+                        $('#MonsterCards').append(data);
+                    });
+                }
+                list.push(@(i));
+                console.log(list.length);
             });
         </script>
     }
 </table>
-@*<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+<div id="MonsterCards">
 
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
