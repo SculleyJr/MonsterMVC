@@ -24,6 +24,7 @@
 </div>
 <table>
     @{int i;}
+    @{ int hp;}
     @foreach (var item in Model.ActiveMonsters)
     {
         <tr>
@@ -31,7 +32,20 @@
                 @Html.DisplayFor(modelItem => item.Monster.Name)
             </td>
             <td>
+
+             
                 @Html.DisplayFor(modelItem => item.HealthPoints)
+            </td>
+            <td>
+                @{
+                    hp = item.HealthPoints;
+                    ;
+                }
+                <form action="/action_page.php">
+                    Damage: <input type="number" name="damage"><br>
+                    <input type="button" value="damage" onclick="location.href = '@Url.Action("AlterHitPoints", "Encounters")'">
+                </form>
+                
             </td>
 
             @{ i = item.MonsterId;

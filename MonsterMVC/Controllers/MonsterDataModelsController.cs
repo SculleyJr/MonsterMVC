@@ -37,33 +37,55 @@ namespace MonsterMVC.Controllers
             return View(db.Monsters.ToList());
         }
 
-       // [HttpGet]
-        public ActionResult SearchMonsters(string searchBy, string search)
+        [HttpGet]
+        public ActionResult SearchMonsters(string search)
         {
-            if (searchBy == "monsterName")
-            {
+          
                 var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
                 return PartialView("_SearchMonsters",monsterDataModels.ToList());
-            }
+            
 
-            else //(searchBy == "challengeRating")
-            {
-                float newCr;
-                if (!(search.IsNullOrWhiteSpace()))
-                {
-                    newCr = float.Parse(search);
-                    var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(newCr));
-                    return PartialView("_SearchMonsters",monsterCR.ToList());
-                }
-                else
-                {
-                    var monsterCR = db.Monsters;
-                    return PartialView("_SearchMonsters", monsterCR.ToList());
-                }
+          
 
             }
          
+        
+
+       // [HttpGet]
+        public ActionResult SearchMonstersCr(string search)
+        {
+
+            float newCr;
+            if (!(search.IsNullOrWhiteSpace()))
+          //  if(!(searchCr == null))
+            {
+                newCr = float.Parse(search);
+                var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(newCr));
+                return PartialView("_SearchMonsters", monsterCR.ToList());
+            }
+         //   else
+            {
+                var monsterCR = db.Monsters;
+                return View("Error");
+            }
+            //            
+            //                float newCr = float.Parse(searchCr);
+            //                if (!(searchCr.IsNullOrWhiteSpace()))
+            //                {
+            //                   // newCr = float.Parse(searchCr);
+            //                    var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(searchCr));
+            //                    return PartialView("_SearchMonsters", monsterCR.ToList());
+            //                }
+            //                else
+            //                {
+            //               // newCr = float.Parse(searchCr);
+            //                    var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(searchCr));
+            //                    return PartialView("_SearchMonsters", monsterCR.ToList());
         }
+
+            
+
+        
 
         // GET: MonsterDataModels
         public ActionResult Index()

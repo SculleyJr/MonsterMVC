@@ -3,14 +3,25 @@
 
 @using (Html.BeginForm("SearchMonsters", "MonsterDataModels", FormMethod.Get))
 {
-    <b>Search By</b>
+    <b>Search By Name</b>
 
-    @Html.RadioButton("searchBy", "monsterName", true)
-    <text>Monster Name</text>
-    @Html.RadioButton("searchBy", "challengeRating", true)
-    <text>Challenge Rating</text>
-    <br />
+@*     @Html.RadioButton("searchBy", "monsterName", true) *@
+@*     <text>Monster Name</text> *@
+@*     @Html.RadioButton("searchBy", "challengeRating", true) *@
+@*     <text>Challenge Rating</text> *@
+@*     <br /> *@
     @Html.TextBox("search")<input id="search" class="searchSubmit" type="button" value="Search" />
+}
+@using (Html.BeginForm("SearchMonstersCr", "MonsterDataModels", FormMethod.Get))
+{
+    <b>Search By Challenge Rating</b>
+
+@*     @Html.RadioButton("searchBy", "monsterName", true) *@
+@*     <text>Monster Name</text> *@
+@*     @Html.RadioButton("searchBy", "challengeRating", true) *@
+@*     <text>Challenge Rating</text> *@
+    <br />
+    @Html.TextBox("searchCr")<input class="searchSubmit1" type="button" value="Search" />
 }
 
 <table class="table">
@@ -50,17 +61,37 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+<script> 
+     $(document).ready(function () { 
+         $('.searchSubmit').click(function () { 
+
+             //var searchByName = $('#searchByName').val(); 
+             var searchBy = $('#searchBy').val(); 
+            var search = $('input#search').val(); 
+
+             var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))"; 
+
+             url = url.replace("-parameter", searchBy); 
+
+             url = url.replace("sempar", search); 
+ 
+             $('#partial').load(url); 
+         }); 
+     }); 
+ </script> 
+
+
 <script>
     $(document).ready(function () {
-        $('.searchSubmit').click(function () {
+        $('.searchSubmit1').click(function () {
 
             //var searchByName = $('#searchByName').val();
-            //var searchByCR = $('#searchByCR').val();
-            var search = $('input#search').val();
+            var searchBy = $('#searchBy').val();
+            var search = $('input#searchCr').val();
 
-            var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
+            var url = "@Html.Raw(Url.Action("SearchMonstersCr", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
 
-            url = url.replace("-parameter", "monsterName");
+            url = url.replace("-parameter", searchBy);
 
             url = url.replace("sempar", search);
 
