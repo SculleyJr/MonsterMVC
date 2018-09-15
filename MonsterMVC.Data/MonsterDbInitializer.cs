@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MonsterMVC.Data
 {
-    class MonsterDbInitializer : DropCreateDatabaseAlways<MonsterDbContext>
+    class MonsterDbInitializer : DropCreateDatabaseIfModelChanges<MonsterDbContext>
     {
         protected override void Seed(MonsterDbContext context)
         {

@@ -21,6 +21,7 @@ namespace MonsterMVC.Data
         public DbSet<Encounter> Encounters { get; set; }
         public DbSet<ActiveMonster> ActiveMonsters { get; set; }
         public DbSet<MonsterDataModel> Monsters {get; set;}
+        public DbSet<EncounterParam> EncounterParams { get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,5 +32,6 @@ namespace MonsterMVC.Data
            
             base.OnModelCreating(modelBuilder);
         }
+
     }
 }

@@ -195,6 +195,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Clients\MonsterClient.cs" />
     <Compile Include="Controllers\ActiveMonstersController.cs" />
+    <Compile Include="Controllers\EncounterParamsController.cs" />
     <Compile Include="Controllers\EncountersController.cs" />
     <Compile Include="Controllers\MonsterController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -334,6 +335,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\EncounterParams\Create.cshtml" />
+    <Content Include="Views\EncounterParams\Delete.cshtml" />
+    <Content Include="Views\EncounterParams\Details.cshtml" />
+    <Content Include="Views\EncounterParams\Edit.cshtml" />
+    <Content Include="Views\EncounterParams\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
