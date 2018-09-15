@@ -17,6 +17,7 @@ namespace MonsterMVC.Data
                 Id = 1,
                 Name = "Aboleth",
                 ChallengeRating = 10,
+                Exp = 5900,
                 UrlId = 1
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -24,6 +25,7 @@ namespace MonsterMVC.Data
                 Id = 2,
                 Name = "Acolyte",
                 ChallengeRating = .25f,
+                Exp = 50,
                 UrlId = 2
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -31,6 +33,7 @@ namespace MonsterMVC.Data
                 Id = 3,
                 Name = "Adult Black Dragon",
                 ChallengeRating = 14,
+                Exp = 11500,
                 UrlId = 3
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -38,6 +41,7 @@ namespace MonsterMVC.Data
                 Id = 4,
                 Name = "Adult Blue Dracolich",
                 ChallengeRating = 17,
+                Exp = 18000,
                 UrlId = 4
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -45,6 +49,7 @@ namespace MonsterMVC.Data
                 Id = 5,
                 Name = "Adult Blue Dragon",
                 ChallengeRating = 16,
+                Exp = 15000,
                 UrlId = 5
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -52,6 +57,7 @@ namespace MonsterMVC.Data
                 Id = 6,
                 Name = "Adult Brass Dragon",
                 ChallengeRating = 13,
+                Exp = 10000,
                 UrlId = 6
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -59,6 +65,7 @@ namespace MonsterMVC.Data
                 Id = 7,
                 Name = "Adult Bronze Dragon",
                 ChallengeRating = 15,
+                Exp = 13000,
                 UrlId = 7
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -66,6 +73,7 @@ namespace MonsterMVC.Data
                 Id = 8,
                 Name = "Adult Copper Dragon",
                 ChallengeRating = 14,
+                Exp = 11500,
                 UrlId = 8
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -73,6 +81,7 @@ namespace MonsterMVC.Data
                 Id = 9,
                 Name = "Adult Gold Dragon",
                 ChallengeRating = 17,
+                Exp = 18000,
                 UrlId = 9
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -80,6 +89,7 @@ namespace MonsterMVC.Data
                 Id = 10,
                 Name = "Adult Green Dragon",
                 ChallengeRating = 15,
+                Exp = 13000,
                 UrlId = 10
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -87,6 +97,7 @@ namespace MonsterMVC.Data
                 Id = 11,
                 Name = "Adult Red Dragon",
                 ChallengeRating = 17,
+                Exp = 18000,
                 UrlId = 11
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -94,6 +105,7 @@ namespace MonsterMVC.Data
                 Id = 12,
                 Name = "Adult Silver Dragon",
                 ChallengeRating = 16,
+                Exp = 15000,
                 UrlId = 12
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -101,6 +113,7 @@ namespace MonsterMVC.Data
                 Id = 13,
                 Name = "Adult White Dragon",
                 ChallengeRating = 13,
+                Exp = 10000,
                 UrlId = 13
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -108,6 +121,7 @@ namespace MonsterMVC.Data
                 Id = 14,
                 Name = "Air Elemental",
                 ChallengeRating = 5,
+                Exp = 1800,
                 UrlId = 14
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -115,6 +129,7 @@ namespace MonsterMVC.Data
                 Id = 15,
                 Name = "Ancient Black Dragon",
                 ChallengeRating = 21,
+                Exp = 33000,
                 UrlId = 15
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -122,6 +137,7 @@ namespace MonsterMVC.Data
                 Id = 16,
                 Name = "Ancient Blue Dragon",
                 ChallengeRating = 23,
+                Exp = 50000,
                 UrlId = 16
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -129,6 +145,7 @@ namespace MonsterMVC.Data
                 Id = 17,
                 Name = "Ancient Brass Dragon",
                 ChallengeRating = 20,
+                Exp = 25000,
                 UrlId = 17
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -136,6 +153,7 @@ namespace MonsterMVC.Data
                 Id = 18,
                 Name = "Ancient Bronze Dragon",
                 ChallengeRating = 22,
+                Exp = 41000,
                 UrlId = 18
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -143,6 +161,7 @@ namespace MonsterMVC.Data
                 Id = 19,
                 Name = "Ancient Copper Dragon",
                 ChallengeRating = 21,
+                Exp = 33000,
                 UrlId = 19
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -150,6 +169,7 @@ namespace MonsterMVC.Data
                 Id = 20,
                 Name = "Ancient Gold Dragon",
                 ChallengeRating = 24,
+                Exp = 62000,
                 UrlId = 20
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -157,6 +177,7 @@ namespace MonsterMVC.Data
                 Id = 21,
                 Name = "Ancient Green Dragon",
                 ChallengeRating = 22,
+                Exp = 41000,
                 UrlId = 21
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -164,6 +185,7 @@ namespace MonsterMVC.Data
                 Id = 22,
                 Name = "Ancient Red Dragon",
                 ChallengeRating = 24,
+                Exp = 62000,
                 UrlId = 22
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -171,6 +193,7 @@ namespace MonsterMVC.Data
                 Id = 23,
                 Name = "Ancient Silver Dragon",
                 ChallengeRating = 23,
+                Exp = 50000,
                 UrlId = 23
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -178,6 +201,7 @@ namespace MonsterMVC.Data
                 Id = 24,
                 Name = "Ancient White Dragon",
                 ChallengeRating = 20,
+                Exp = 25000,
                 UrlId = 24
             });
             context.Monsters.Add(new MonsterDataModel()
@@ -185,6 +209,7 @@ namespace MonsterMVC.Data
                 Id = 25,
                 Name = "Androsphinx",
                 ChallengeRating = 17,
+                Exp = 18000
                 UrlId = 25
             });
             context.Monsters.Add(new MonsterDataModel()
