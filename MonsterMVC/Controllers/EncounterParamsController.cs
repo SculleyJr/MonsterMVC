@@ -18,6 +18,16 @@ namespace MonsterMVC.Controllers
     {
         private MonsterDbContext db = new MonsterDbContext();
 
+        public void AddMonstersToStack(int numberOfMonsters, Stack<MonsterDataModel> monsterStack, int experienceParamater)
+        {
+            List<MonsterDataModel> monsterList = GetListOfMonstersByExperience(experienceParamater).ToList();
+
+            for (int i = 0; i < numberOfMonsters; i++)
+            {
+                PushMonsterToStack(monsterStack, monsterList[GetRandomNumber(monsterList.Count)]);
+            }
+        }
+
         public void PopMonsterFromStack(Stack<MonsterDataModel> monsterStack)
         {
             monsterStack.Pop();
