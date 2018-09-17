@@ -340,6 +340,7 @@
     <Content Include="Views\EncounterParams\Details.cshtml" />
     <Content Include="Views\EncounterParams\Edit.cshtml" />
     <Content Include="Views\EncounterParams\Index.cshtml" />
+    <Content Include="Views\Shared\_HealthForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

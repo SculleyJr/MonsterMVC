@@ -26,12 +26,7 @@
     @foreach (var item in Model.ActiveMonsters)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Monster.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HealthPoints)
-            </td>
+            @{ Html.RenderPartial("_HealthForm", item); }
             <td>
                 @Html.ActionLink("Edit", "Edit", "ActiveMonsters", new { id = item.Id }, null)
             </td>

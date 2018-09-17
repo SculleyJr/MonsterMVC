@@ -231,33 +231,38 @@
         <h4>
             @Html.DisplayNameFor(model => model.SpecialAbilities)
         </h4>
-        @foreach (var item in Model.SpecialAbilities)
-        {
+    @if(Model.SpecialAbilities != null)
+       { 
+           foreach (var item in Model.SpecialAbilities)
+           {
 
-            <h5>
-                @Html.DisplayFor(modelItem => item.Name)
-            </h5>
-            <div style="display: flex; justify-content: space-around; align-content: flex-start;">
-                <div style="display: flex; flex-direction: column;">
-                    <dt>
-                        @Html.DisplayNameFor(modelItem => item.AttackBonus)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(modelItem => item.AttackBonus)
-                    </dd>
-                </div>
-                <div style="display: flex; flex-direction: column;">
-                    <dd>
-                        @Html.DisplayFor(modelItem => item.Desc)
-                    </dd>
-                </div>
-            </div>
-        }
-        <h4>
-            @Html.DisplayNameFor(model => model.Actions)
-        </h4>
-        <hr />
-        @foreach (var item in Model.Actions)
+               <h5>
+                   @Html.DisplayFor(modelItem => item.Name)
+               </h5>
+               <div style="display: flex; justify-content: space-around; align-content: flex-start;">
+                   <div style="display: flex; flex-direction: column;">
+                       <dt>
+                           @Html.DisplayNameFor(modelItem => item.AttackBonus)
+                       </dt>
+                       <dd>
+                           @Html.DisplayFor(modelItem => item.AttackBonus)
+                       </dd>
+                   </div>
+                   <div style="display: flex; flex-direction: column;">
+                       <dd>
+                           @Html.DisplayFor(modelItem => item.Desc)
+                       </dd>
+                   </div>
+               </div>
+           }
+       }
+    <h4>
+        @Html.DisplayNameFor(model => model.Actions)
+    </h4>
+    <hr />
+    @if (Model.Actions != null)
+    {
+        foreach (var item in Model.Actions)
         {
             <h5>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -278,6 +283,8 @@
                 </div>
             </div>
         }
+    }
+  
     </dl>
 </div>
 <p>
