@@ -55,12 +55,12 @@ namespace MonsterMVC.Controllers
         public ActionResult SearchMonstersCr(string search)
         {
             //TODO: Create Method for searching monsters by ExperiencePoints rounded to the nearest 50
-            float newCr;
+            int newCr;
             if (!(search.IsNullOrWhiteSpace()))
           //  if(!(searchCr == null))
             {
-                newCr = float.Parse(search);
-                var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(newCr));
+                newCr = int.Parse(search);
+                var monsterCR = db.Monsters.Where(x => x.Exp.Equals(newCr));
                 return PartialView("_SearchMonsters", monsterCR.ToList());
             }
          //   else

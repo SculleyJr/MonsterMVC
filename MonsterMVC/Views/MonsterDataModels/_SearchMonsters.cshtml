@@ -14,7 +14,7 @@
 }
 @using (Html.BeginForm("SearchMonstersCr", "MonsterDataModels", FormMethod.Get))
 {
-    <b>Search By Challenge Rating</b>
+    <b>Search By Experience</b>
 
 @*     @Html.RadioButton("searchBy", "monsterName", true) *@
 @*     <text>Monster Name</text> *@
@@ -33,6 +33,9 @@
             @Html.DisplayNameFor(model => model.ChallengeRating)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Exp)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.UrlId)
         </th>
         <th></th>
@@ -40,21 +43,24 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChallengeRating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UrlId)
-            </td>
-            <td>
-                @Html.ActionLink("Add to Encounter", "Create", "ActiveMonsters", new { UrlId = item.UrlId, EncounterId = 1 }, null)
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChallengeRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrlId)
+        </td>
+        <td>
+            @Html.ActionLink("Add to Encounter", "Create", "ActiveMonsters", new { UrlId = item.UrlId, EncounterId = 1 }, null)
 
-            </td>
-        </tr>
+        </td>
+    </tr>
     }
 
 </table>
