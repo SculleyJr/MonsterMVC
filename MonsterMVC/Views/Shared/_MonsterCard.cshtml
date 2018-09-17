@@ -228,10 +228,12 @@
             </div>
         </div>
         <hr />
-        <h4>
-            @Html.DisplayNameFor(model => model.SpecialAbilities)
-        </h4>
-        @foreach (var item in Model.SpecialAbilities)
+    <h4>
+        @Html.DisplayNameFor(model => model.SpecialAbilities)
+    </h4>
+    @if(Model.SpecialAbilities != null)
+    { 
+        foreach (var item in Model.SpecialAbilities)
         {
 
             <h5>
@@ -253,11 +255,14 @@
                 </div>
             </div>
         }
+    }
         <h4>
             @Html.DisplayNameFor(model => model.Actions)
         </h4>
         <hr />
-        @foreach (var item in Model.Actions)
+    @if (Model.Actions != null)
+    {
+        foreach (var item in Model.Actions)
         {
             <h5>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -278,6 +283,7 @@
                 </div>
             </div>
         }
+    }
     </dl>
 </div>
 <p>

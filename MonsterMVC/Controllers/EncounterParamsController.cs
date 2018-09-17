@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
+using MonsterMVC.Domain.DomainModel;
 
 namespace MonsterMVC.Controllers
 {
@@ -15,120 +16,107 @@ namespace MonsterMVC.Controllers
     {
         private MonsterDbContext db = new MonsterDbContext();
 
-        // GET: EncounterParams
-        public ActionResult Index()
+
+        public ActionResult GetExperienceAllowanceForEncounter(int averagePlayerLevel, char encounterDifficulty)
         {
-            return View(db.EncounterParams.ToList());
+            int xp = 100;
+
+            if (encounterDifficulty == 'E')
+            {
+                if (averagePlayerLevel == 1)
+                {
+                    xp = 100;
+                }
+                if (averagePlayerLevel == 2)
+                {
+                    xp = 200;
+                }
+                if (averagePlayerLevel == 3)
+                {
+                    xp = 400;
+                }
+                if (averagePlayerLevel == 4)
+                {
+                    xp = 500;
+                }
+                if (averagePlayerLevel == 5)
+                {
+                    xp = 1100;
+                }
+                if (averagePlayerLevel == 6)
+                {
+                    xp = 1400;
+                }
+                if (averagePlayerLevel == 7)
+                {
+                    xp = 1700;
+                }
+                if (averagePlayerLevel == 8)
+                {
+                    xp = 2100;
+                }
+                if (averagePlayerLevel == 9)
+                {
+                    xp = 2400;
+                }
+                if (averagePlayerLevel == 10)
+                {
+                    xp = 2800;
+                }
+                if (averagePlayerLevel == 11)
+                {
+                    xp = 3600;
+                }
+                if (averagePlayerLevel == 12)
+                {
+                    xp = 4500;
+                }
+                if (averagePlayerLevel == 13)
+                {
+                    xp = 5100;
+                }
+                if (averagePlayerLevel == 14)
+                {
+                    xp = 5700;
+                }
+                if (averagePlayerLevel == 15)
+                {
+                    xp = 6400;
+                }
+                if (averagePlayerLevel == 16)
+                {
+                    xp = 7200;
+                }
+                if (averagePlayerLevel == 17)
+                {
+                    xp = 8800;
+                }
+                if (averagePlayerLevel == 18)
+                {
+                    xp = 9500;
+                }
+                if (averagePlayerLevel == 19)
+                {
+                    xp = 10900;
+                }
+                if (averagePlayerLevel == 20)
+                {
+                    xp = 12700;
+                }
+            }
+
+            return RedirectToAction("GetAverageMonsterExperience", new{totalExperienceAllowance = xp});
         }
 
-        // GET: EncounterParams/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EncounterParam encounterParam = db.EncounterParams.Find(id);
-            if (encounterParam == null)
-            {
-                return HttpNotFound();
-            }
-            return View(encounterParam);
+            var individualMonsterExperience =  totalExperienceAllowance / numberOfMonstersInEncounter;
+            return RedirectToAction("GetTemporaryMonsters", new {individualMonsterExperience = individualMonsterExperience});
         }
 
-        // GET: EncounterParams/Create
-        public ActionResult Create()
+        public ICollection<MonsterDataModel> GetTemporaryMonsters(int indvidualMonsterExperience, int numberOfMonsters)
         {
-            return View();
-        }
-
-        // POST: EncounterParams/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AverageLvl,Difficulty,NumberOfMonsters")] EncounterParam encounterParam)
-        {
-            ActiveMonster monster = new ActiveMonster();
-            List<ActiveMonster> monsters = new List<ActiveMonster>();
-            if (ModelState.IsValid)
-            {
-                int xp = encounterParam.GetXp(encounterParam.AverageLvl, encounterParam.Difficulty);
-                var monsterList = encounterParam.CreateListOfMonsters(xp);
-                db.EncounterParams.Add(encounterParam);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(encounterParam);
-        }
-
-       
-
-        // GET: EncounterParams/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EncounterParam encounterParam = db.EncounterParams.Find(id);
-            if (encounterParam == null)
-            {
-                return HttpNotFound();
-            }
-            return View(encounterParam);
-        }
-
-        // POST: EncounterParams/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,AverageLvl,NumberOfMonsters")] EncounterParam encounterParam)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(encounterParam).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(encounterParam);
-        }
-
-        // GET: EncounterParams/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            EncounterParam encounterParam = db.EncounterParams.Find(id);
-            if (encounterParam == null)
-            {
-                return HttpNotFound();
-            }
-            return View(encounterParam);
-        }
-
-        // POST: EncounterParams/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            EncounterParam encounterParam = db.EncounterParams.Find(id);
-            db.EncounterParams.Remove(encounterParam);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            //TODO: return a list of monsters as a collection to the activemonster create method in ActiveMonstersController;
         }
     }
 }

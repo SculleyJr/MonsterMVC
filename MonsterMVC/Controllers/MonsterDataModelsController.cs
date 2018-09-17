@@ -54,7 +54,7 @@ namespace MonsterMVC.Controllers
        // [HttpGet]
         public ActionResult SearchMonstersCr(string search)
         {
-
+            //TODO: Create Method for searching monsters by ExperiencePoints rounded to the nearest 50
             float newCr;
             if (!(search.IsNullOrWhiteSpace()))
           //  if(!(searchCr == null))
