@@ -114,9 +114,9 @@ namespace MonsterMVC.Controllers
             return RedirectToAction("GetTemporaryMonsters", new {individualMonsterExperience = individualMonsterExperience});
         }
 
-        public ICollection<MonsterDataModel> GetTemporaryMonsters(int indvidualMonsterExperience, int numberOfMonsters)
-        {
-            //TODO: return a list of monsters as a collection to the activemonster create method in ActiveMonstersController;
-        }
+        //public ICollection<MonsterDataModel> GetTemporaryMonsters(int indvidualMonsterExperience, int numberOfMonsters)
+        //{
+        //    //TODO: return a list of monsters as a collection to the activemonster create method in ActiveMonstersController;
+        //}
     }
 }
