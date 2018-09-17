@@ -7,6 +7,7 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
 using MonsterMVC.Domain.DomainModel;
@@ -17,6 +18,82 @@ namespace MonsterMVC.Controllers
     public class EncounterParamsController : Controller
     {
         private MonsterDbContext db = new MonsterDbContext();
+
+        public ICollection<MonsterDataModel> ConvertMonsterStackToCollection(Stack<MonsterDataModel> monsterStack)
+        {
+            var monsterCollection = new List<MonsterDataModel>();
+
+            foreach (var monster in monsterStack)
+            {
+                monsterCollection.Add(monster);
+            }
+
+            return monsterCollection;
+        }
+
+        public Stack<MonsterDataModel> GenerateStackOfMonsterDataModels(int numberOfMonsters, int averagePlayerLevel)
+        {
+            var monsterStack = CreateMonsterStack();
+
+            var experienceAllowance = GetExperienceAllowanceForEncounter(averagePlayerLevel);
+
+            var experienceParameter = GetExperienceSearchParameter(numberOfMonsters, experienceAllowance);
+
+            AddMonstersToStack(numberOfMonsters, monsterStack, experienceParameter);
+
+            while (!ExperienceTotalIsInTargetRange(monsterStack, experienceAllowance))
+            {
+                var stackTotalExp = CalculateStackTotalExp(monsterStack);
+
+                PopMonsterFromStack(monsterStack);
+
+                var alteredExperienceParameter = AlterSearchParameter(experienceParameter, stackTotalExp, experienceAllowance);
+
+                var temporaryMonsterList = GetListOfMonstersByExperience(alteredExperienceParameter).ToList();
+
+                PushMonsterToStack(monsterStack, temporaryMonsterList[GetRandomNumber(temporaryMonsterList.Count)]);
+
+            }
+
+            return monsterStack;
+        }
+
+        public int AlterSearchParameter(int experienceParameter, int stackTotalExp, int experienceAllowance )
+        {
+            var comparisonEnum = MonsterExperienceValuesEnum.Tier1;
+            while (experienceParameter !=(int)comparisonEnum)
+            {
+                comparisonEnum++;
+            }
+
+            if (stackTotalExp > experienceAllowance)
+            {
+                comparisonEnum--;
+            }
+            else
+            {
+                comparisonEnum++;
+            }
+
+            var alteredSearchParameter = (int)comparisonEnum;
+
+            return alteredSearchParameter;
+        }
+
+        public bool ExperienceTotalIsInTargetRange(Stack<MonsterDataModel> monsterStack, int encounterXpAllowance)
+        {
+            if (CalculateStackTotalExp(monsterStack) > (encounterXpAllowance + 100))
+            {
+                return false;
+            }
+
+            if (CalculateStackTotalExp(monsterStack) < (encounterXpAllowance - 100))
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         public void AddMonstersToStack(int numberOfMonsters, Stack<MonsterDataModel> monsterStack, int experienceParamater)
         {
@@ -67,8 +144,9 @@ namespace MonsterMVC.Controllers
             return monsterList;
         }
 
-        public int GetExperienceAllowanceForEncounter(int averagePlayerLevel, char encounterDifficulty)
+        public int GetExperienceAllowanceForEncounter(int averagePlayerLevel/*, char encounterDifficulty*/)
         {
+            var encounterDifficulty = 'E';
             int xp = 100;
 
             if (encounterDifficulty == 'E')
@@ -166,7 +244,7 @@ namespace MonsterMVC.Controllers
 
         public int GetExperienceSearchParameter(int numberOfMonsters, int experienceAllowance)
         {
-            var expectedEnum = (experienceAllowance/numberOfMonsters);
+            var expectedEnum = (int)GetAverageMonsterExperience(experienceAllowance, numberOfMonsters);
             var comparisonEnum = MonsterExperienceValuesEnum.Tier1;
             while (expectedEnum >(int)comparisonEnum)
             {
