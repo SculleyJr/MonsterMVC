@@ -110,13 +110,19 @@ namespace MonsterMVC.Controllers
 
         public ActionResult GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)
         {
-            var individualMonsterExperience =  Math.Round(totalExperienceAllowance / numberOfMonstersInEncounter);
+            var individualMonsterExperience =  totalExperienceAllowance / numberOfMonstersInEncounter;
             return RedirectToAction("GetTemporaryMonsters", new {individualMonsterExperience = individualMonsterExperience});
         }
 
-        //public ICollection<MonsterDataModel> GetTemporaryMonsters(int indvidualMonsterExperience, int numberOfMonsters)
-        //{
-        //    //TODO: return a list of monsters as a collection to the activemonster create method in ActiveMonstersController;
-        //}
+        public ICollection<MonsterDataModel> GetTemporaryMonsters(int indvidualMonsterExperience, int numberOfMonsters)
+        {
+            //TODO: return a list of monsters as a collection to the activemonster create method in ActiveMonstersController;
+
+            var temporayMonsterLiset = new List<MonsterDataModel>();
+
+
+
+
+        }
     }
 }
