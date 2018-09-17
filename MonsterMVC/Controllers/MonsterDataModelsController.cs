@@ -68,24 +68,17 @@ namespace MonsterMVC.Controllers
                 var monsterCR = db.Monsters;
                 return View("Error");
             }
-            //            
-            //                float newCr = float.Parse(searchCr);
-            //                if (!(searchCr.IsNullOrWhiteSpace()))
-            //                {
-            //                   // newCr = float.Parse(searchCr);
-            //                    var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(searchCr));
-            //                    return PartialView("_SearchMonsters", monsterCR.ToList());
-            //                }
-            //                else
-            //                {
-            //               // newCr = float.Parse(searchCr);
-            //                    var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(searchCr));
-            //                    return PartialView("_SearchMonsters", monsterCR.ToList());
+          
+        }
+        //Search Monster Exp
+        public ICollection<MonsterDataModel> SearchMonstersXP(int expParameter)
+        {
+            var monsterExp = db.Monsters.Where(x => x.Exp.Equals(expParameter));
+            return monsterExp.ToList();
         }
 
-            
 
-        
+
 
         // GET: MonsterDataModels
         public ActionResult Index()
