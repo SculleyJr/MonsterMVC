@@ -47,10 +47,14 @@ namespace MonsterMVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AverageLvl,NumberOfMonsters")] EncounterParam encounterParam)
+        public ActionResult Create([Bind(Include = "Id,AverageLvl,Difficulty,NumberOfMonsters")] EncounterParam encounterParam)
         {
+            ActiveMonster monster = new ActiveMonster();
+            List<ActiveMonster> monsters = new List<ActiveMonster>();
             if (ModelState.IsValid)
             {
+                int xp = encounterParam.GetXp(encounterParam.AverageLvl, encounterParam.Difficulty);
+                var monsterList = encounterParam.CreateListOfMonsters(xp);
                 db.EncounterParams.Add(encounterParam);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -58,6 +62,8 @@ namespace MonsterMVC.Controllers
 
             return View(encounterParam);
         }
+
+       
 
         // GET: EncounterParams/Edit/5
         public ActionResult Edit(int? id)

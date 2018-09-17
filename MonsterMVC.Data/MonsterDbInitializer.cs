@@ -1593,7 +1593,7 @@ namespace MonsterMVC.Data
                 Id = 198,
                 Name = "Medusa",
                 ChallengeRating = 6,
-                Exp =2300l
+                Exp = 2300,
                 UrlId = 198
             });
             context.Monsters.Add(new MonsterDataModel()
