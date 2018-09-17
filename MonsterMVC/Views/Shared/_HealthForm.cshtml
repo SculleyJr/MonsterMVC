@@ -1,0 +1,27 @@
+﻿@model MonsterMVC.Domain.Data.ActiveMonster
+
+<td>
+    @Html.DisplayFor(model => model.Monster.Name)
+</td>
+<td>
+    @Html.DisplayFor(model => model.HealthPoints)
+</td>
+            
+<td id="damage">
+    @Html.TextBox("Damage", null, new { @class = "form-control" })
+    <input type="submit" value="Save" class="btn btn-default" onclick="location.href = '@Url.Action("Edit", "ActiveMonsters")'" />
+</td>
+<script> 
+    $(document).ready(function () { 
+        $('.damage').click(function () { 
+
+            //var searchByName = $('#searchByName').val(); 
+                       
+
+            var url = "@Html.Raw(Url.Action("Edit", "ActiveMonsters", new { id = Model.Id}))"; 
+
+                        
+            $('#partial').load(url); 
+        }); 
+    }); 
+</script> 
