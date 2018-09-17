@@ -18,6 +18,12 @@ namespace MonsterMVC.Controllers
     {
         private MonsterDbContext db = new MonsterDbContext();
 
+        public int GetRandomNumber(int range)
+        {
+            Random rnd = new Random();
+            int number = rnd.Next(1,range);
+            return number;
+        }
 
         public int CalculateStackTotalExp(Stack<MonsterDataModel> monsters)
         {
@@ -26,7 +32,6 @@ namespace MonsterMVC.Controllers
             {
                 expTotal += monster.Exp;
             }
-
             return expTotal;
         }
 
