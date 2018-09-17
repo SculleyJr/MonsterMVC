@@ -18,6 +18,18 @@ namespace MonsterMVC.Controllers
     {
         private MonsterDbContext db = new MonsterDbContext();
 
+
+        public int CalculateStackTotalExp(Stack<MonsterDataModel> monsters)
+        {
+            int expTotal = 0;
+            foreach (var monster in monsters)
+            {
+                expTotal += monster.Exp;
+            }
+
+            return expTotal;
+        }
+
         public ICollection<MonsterDataModel> GetListOfMonstersByExperience(int experienceParameter)
         {
             var monsterDataModelController = new MonsterDataModelsController();
