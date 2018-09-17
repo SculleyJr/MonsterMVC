@@ -19,6 +19,15 @@ namespace MonsterMVC.Controllers
     {
         private MonsterDbContext db = new MonsterDbContext();
 
+        public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfMonsters, int averagePlayerLevel)
+        {
+            var monsters = GenerateStackOfMonsterDataModels(numberOfMonsters, averagePlayerLevel);
+
+            var monsterList = ConvertMonsterStackToCollection(monsters);
+
+            return monsterList;
+        }
+
         public ICollection<MonsterDataModel> ConvertMonsterStackToCollection(Stack<MonsterDataModel> monsterStack)
         {
             var monsterCollection = new List<MonsterDataModel>();
