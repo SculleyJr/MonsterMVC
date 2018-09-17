@@ -18,6 +18,21 @@ namespace MonsterMVC.Controllers
     {
         private MonsterDbContext db = new MonsterDbContext();
 
+        public void PopMonsterFromStack(Stack<MonsterDataModel> monsterStack)
+        {
+            monsterStack.Pop();
+        }
+        public void PushMonsterToStack(Stack<MonsterDataModel> monsterStack, MonsterDataModel monster)
+        {
+            monsterStack.Push(monster);
+        }
+
+        public Stack<MonsterDataModel> CreateMonsterStack()
+        {
+            var monsterStack = new Stack<MonsterDataModel>();
+            return monsterStack;
+        }
+
         public int GetRandomNumber(int range)
         {
             Random rnd = new Random();
