@@ -110,7 +110,7 @@ namespace MonsterMVC.Controllers
 
         public ActionResult GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)
         {
-            var individualMonsterExperience =  totalExperienceAllowance / numberOfMonstersInEncounter;
+            var individualMonsterExperience =  Math.Round(totalExperienceAllowance / numberOfMonstersInEncounter);
             return RedirectToAction("GetTemporaryMonsters", new {individualMonsterExperience = individualMonsterExperience});
         }
 
