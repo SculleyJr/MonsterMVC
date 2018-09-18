@@ -268,53 +268,229 @@ namespace MonsterMVC.Controllers
             return xp;
         }
 
-        public float GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)
+        public int GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)
         {
-            var individualMonsterExperience =  totalExperienceAllowance / numberOfMonstersInEncounter;
-            return individualMonsterExperience;
+            decimal individualMonsterExperience =  totalExperienceAllowance / numberOfMonstersInEncounter;
+            var roundedAverage = Math.Round(individualMonsterExperience, 0, MidpointRounding.AwayFromZero);
+            return (int) roundedAverage;
         }
 
         public int GetExperienceSearchParameter(int numberOfMonsters, int experienceAllowance)
         {
-            var expectedEnum = (int)GetAverageMonsterExperience(experienceAllowance, numberOfMonsters);
-            var comparisonEnum = MonsterExperienceValuesEnum.Tier1;
-            int i;
-            foreach (MonsterExperienceValuesEnum value in (int[])Enum.GetValues(typeof(MonsterExperienceValuesEnum)))
+            var averageMonsterExperience = GetAverageMonsterExperience(experienceAllowance, numberOfMonsters);
+            var comparisonValOne = 0;
+            var comparisonValTwo = 155000;
+
+            while (comparisonValOne < averageMonsterExperience)
             {
-               
-               
-                if (expectedEnum > (int)value)
+                switch (comparisonValOne)
                 {
-                    continue;
+                    case 0:
+                        comparisonValOne = 10;
+                        break;
+                    case 10:
+                        comparisonValOne = 25;
+                        break;
+                    case 25:
+                        comparisonValOne = 50;
+                        break;
+                    case 50:
+                        comparisonValOne = 100;
+                        break;
+                    case 100:
+                        comparisonValOne = 200;
+                        break;
+                    case 200:
+                        comparisonValOne = 450;
+                        break;
+                    case 450:
+                        comparisonValOne = 700;
+                        break;
+                    case 700:
+                        comparisonValOne = 1100;
+                        break;
+                    case 1100:
+                        comparisonValOne = 1800;
+                        break;
+                    case 1800:
+                        comparisonValOne = 2300;
+                        break;
+                    case 2300:
+                        comparisonValOne = 2900;
+                        break;
+                    case 2900:
+                        comparisonValOne = 3900;
+                        break;
+                    case 3900:
+                        comparisonValOne = 5000;
+                        break;
+                    case 5000:
+                        comparisonValOne = 5900;
+                        break;
+                    case 5900:
+                        comparisonValOne = 7200;
+                        break;
+                    case 7200:
+                        comparisonValOne = 11500;
+                        break;
+                    case 11500:
+                        comparisonValOne = 13000;
+                        break;
+                    case 13000:
+                        comparisonValOne = 15000;
+                        break;
+                    case 15000:
+                        comparisonValOne = 18000;
+                        break;
+                    case 18000:
+                        comparisonValOne = 20000;
+                        break;
+                    case 20000:
+                        comparisonValOne = 22000;
+                        break;
+                    case 22000:
+                        comparisonValOne = 25000;
+                        break;
+                    case 25000:
+                        comparisonValOne = 33000;
+                        break;
+                    case 33000:
+                        comparisonValOne = 41000;
+                        break;
+                    case 41000:
+                        comparisonValOne =50000;
+                        break;
+                    case 50000:
+                        comparisonValOne = 62000;
+                        break;
+                    case 62000:
+                        comparisonValOne = 75000;
+                        break;
+                    case 75000:
+                        comparisonValOne = 90000;
+                        break;
+                    case 90000:
+                        comparisonValOne = 105000;
+                        break;
+                    case 105000:
+                        comparisonValOne = 120000;
+                        break;
+                    case 120000:
+                        comparisonValOne = 135000;
+                        break;
+                    case 135000:
+                        comparisonValOne = 155000;
+                        break;
                 }
-
-                if (expectedEnum <= (int) value)
+            }
+            while (comparisonValTwo > averageMonsterExperience)
+            {
+                switch (comparisonValTwo)
                 {
-                    return (int) value;
+                    case 155000:
+                        comparisonValTwo = 135000;
+                        break;
+                    case 135000:
+                        comparisonValTwo = 120000;
+                        break;
+                    case 120000:
+                        comparisonValTwo = 105000;
+                        break;
+                    case 105000:
+                        comparisonValTwo = 90000;
+                        break;
+                    case 90000:
+                        comparisonValTwo = 75000;
+                        break;
+                    case 75000:
+                        comparisonValTwo = 62000;
+                        break;
+                    case 62000:
+                        comparisonValTwo = 50000;
+                        break;
+                    case 50000:
+                        comparisonValTwo = 41000;
+                        break;
+                    case 41000:
+                        comparisonValTwo = 33000;
+                        break;
+                    case 33000:
+                        comparisonValTwo = 25000;
+                        break;
+                    case 25000:
+                        comparisonValTwo = 22000;
+                        break;
+                    case 22000:
+                        comparisonValTwo = 20000;
+                        break;
+                    case 20000:
+                        comparisonValTwo = 18000;
+                        break;
+                    case 18000:
+                        comparisonValTwo = 15000;
+                        break;
+                    case 15000:
+                        comparisonValTwo = 13000;
+                        break;
+                    case 13000:
+                        comparisonValTwo = 11500;
+                        break;
+                    case 11500:
+                        comparisonValTwo = 7200;
+                        break;
+                    case 7200:
+                        comparisonValTwo = 5900;
+                        break;
+                    case 5900:
+                        comparisonValTwo = 5000;
+                        break;
+                    case 5000:
+                        comparisonValTwo = 3900;
+                        break;
+                    case 3900:
+                        comparisonValTwo = 2900;
+                        break;
+                    case 2900:
+                        comparisonValTwo = 2300;
+                        break;
+                    case 2300:
+                        comparisonValTwo = 1800;
+                        break;
+                    case 1800:
+                        comparisonValTwo = 1100;
+                        break;
+                    case 1100:
+                        comparisonValTwo = 700;
+                        break;
+                    case 700:
+                        comparisonValTwo = 450;
+                        break;
+                    case 450:
+                        comparisonValTwo = 200;
+                        break;
+                    case 200:
+                        comparisonValTwo = 100;
+                        break;
+                    case 100:
+                        comparisonValTwo = 50;
+                        break;
+                    case 50:
+                        comparisonValTwo = 25;
+                        break;
+                    case 25:
+                        comparisonValTwo = 10;
+                        break;
                 }
-               
-            }
-            while (expectedEnum >(int)comparisonEnum)
-            {
-                comparisonEnum++;
             }
 
-            var maxPotentialTierDivision = expectedEnum%(int)comparisonEnum;
-            comparisonEnum++;
-            var minPotentialTierDivision = expectedEnum % (int) comparisonEnum;
-
-            if (minPotentialTierDivision < maxPotentialTierDivision)
+            if (comparisonValOne % averageMonsterExperience > averageMonsterExperience % comparisonValTwo )
             {
-                expectedEnum = (int)comparisonEnum;
+                return comparisonValTwo;
             }
             else
             {
-                comparisonEnum++;
-                expectedEnum = (int) comparisonEnum;
+                return comparisonValOne;
             }
-
-            return expectedEnum;
-
         }
 
     }
