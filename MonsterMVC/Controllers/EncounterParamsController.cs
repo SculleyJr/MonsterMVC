@@ -15,8 +15,26 @@ using MonsterMVC.Domain.Enums;
 
 namespace MonsterMVC.Controllers
 {
+   
+
     public class EncounterParamsController : Controller
     {
+        public ActionResult TestView()
+        {
+            return View();
+        }
+
+        public ActionResult TestResultView(int numberOfMonsters, int averagePlayerLevel)
+        {
+
+
+          var monsters =  GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
+
+            return View(monsters);
+        }
+
+
+
         private MonsterDbContext db = new MonsterDbContext();
 
         public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfMonsters, int averagePlayerLevel)
@@ -255,6 +273,17 @@ namespace MonsterMVC.Controllers
         {
             var expectedEnum = (int)GetAverageMonsterExperience(experienceAllowance, numberOfMonsters);
             var comparisonEnum = MonsterExperienceValuesEnum.Tier1;
+            int i;
+            foreach (MonsterExperienceValuesEnum value in (int[])Enum.GetValues(typeof(MonsterExperienceValuesEnum)))
+            {
+               
+               
+                if (expectedEnum > (int)value)
+                {
+                    return (int)value;
+                }
+               
+            }
             while (expectedEnum >(int)comparisonEnum)
             {
                 comparisonEnum++;
