@@ -8,11 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
+using MonsterMVC.Service;
 
 namespace MonsterMVC.Controllers
 {
     public class EncountersController : Controller
     {
+        private GenerateRandomEncounterService _generateRandomEncounterService = new GenerateRandomEncounterService();
+
         private MonsterDbContext db = new MonsterDbContext();
 
         // GET: Encounters
@@ -80,7 +83,7 @@ namespace MonsterMVC.Controllers
             {
                 db.Encounters.Add(encounter);
                 db.SaveChanges();
-                var monsters = encounterParamController.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
+                var monsters = _generateRandomEncounterService.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
                 foreach (var monster in monsters)
                 {
                     activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, 10);
