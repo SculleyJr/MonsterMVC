@@ -64,6 +64,20 @@ namespace MonsterMVC.Controllers
             return View(activeMonster);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public void CreateFromRandom(int encounterId, int monsterId, int health)
+        {
+            var activeMonster = new ActiveMonster();
+            activeMonster.EncounterId = encounterId;
+            activeMonster.MonsterId = monsterId;
+            activeMonster.HealthPoints = health;
+            activeMonster.IsAlive = true;
+
+            db.ActiveMonsters.Add(activeMonster);
+            db.SaveChanges();
+        }
+
         // GET: ActiveMonsters/Edit/5
         public ActionResult Edit(int? id)
         {

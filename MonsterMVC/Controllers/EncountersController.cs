@@ -64,6 +64,33 @@ namespace MonsterMVC.Controllers
             return RedirectToAction("Details", new {id = encounter.Id});
         }
 
+        /// //////////////
+        public ActionResult CreateFromRandom()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateFromRandom([Bind(Include = "Id")] Encounter encounter, int numberOfMonsters, int averagePlayerLevel)
+        {
+            var encounterParamController = new EncounterParamsController();
+            var activeMonsterController = new ActiveMonstersController();
+            if (ModelState.IsValid)
+            {
+                db.Encounters.Add(encounter);
+                db.SaveChanges();
+                var monsters = encounterParamController.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
+                foreach (var monster in monsters)
+                {
+                    activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, 10);
+                }
+                
+                return RedirectToAction("Details", new { id = encounter.Id });
+            }
+            return RedirectToAction("Details", new { id = encounter.Id });
+        }
+
         // GET: Encounters/Edit/5
         public ActionResult Edit(int? id)
         {

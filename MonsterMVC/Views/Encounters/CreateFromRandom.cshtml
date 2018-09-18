@@ -1,0 +1,32 @@
+﻿@model MonsterMVC.Domain.Data.Encounter
+
+@{
+    ViewBag.Title = "CreateFromRandom";
+}
+
+<h2>CreateFromRandom</h2>
+
+
+@using (Html.BeginForm("CreateFromRandom", "Encounters", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+    <form method="POST">
+        <label for="numberOfMonsters">Number of Monsters</label>
+        <input type="number" id="numberOfMonsters" name="numberOfMonsters" />
+        <label for="averagePlayerLevel">Average Player Level</label>
+        <input type="number" id="averagePlayerLevel" name="averagePlayerLevel" />
+        <input type="submit" />
+    </form>
+
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
