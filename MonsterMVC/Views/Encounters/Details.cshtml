@@ -11,7 +11,7 @@
 
 <div id="partial">
     @{
-        Html.RenderAction("SearchMonsters", "MonsterDataModels", new{ searchBy = "monsterName", search ="Zombie"});
+        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Zombie" });
     }
 </div>
 <div>
@@ -19,21 +19,14 @@
     <hr />
     <dl class="dl-horizontal"></dl>
 </div>
-<div id="MonsterCards">
 
-</div>
 <table>
     @{int i;}
 
     @foreach (var item in Model.ActiveMonsters)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Monster.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.HealthPoints)
-            </td>
+            @{ Html.RenderPartial("_HealthForm", item); }
             <td>
                 @Html.ActionLink("Edit", "Edit", "ActiveMonsters", new { id = item.Id }, null)
             </td>
@@ -52,10 +45,10 @@
                 var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
 
                 url = url.replace("urlId", search);
-                
+
                 if (jQuery.inArray(@(i), list) === -1) {
-                    $.get(url, function(data){ 
-                        $('#MonsterCards').append(data);  
+                    $.get(url, function(data){
+                        $('#MonsterCards').append(data);
                     });
                 }
                 list.push(@(i));
@@ -64,8 +57,10 @@
         </script>
     }
 </table>
-@*<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>*@
+<div id="MonsterCards">
 
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

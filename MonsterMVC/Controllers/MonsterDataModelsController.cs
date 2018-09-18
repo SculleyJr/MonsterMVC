@@ -37,33 +37,48 @@ namespace MonsterMVC.Controllers
             return View(db.Monsters.ToList());
         }
 
-       // [HttpGet]
-        public ActionResult SearchMonsters(string searchBy, string search)
+        [HttpGet]
+        public ActionResult SearchMonsters(string search)
         {
-            if (searchBy == "monsterName")
-            {
+          
                 var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
                 return PartialView("_SearchMonsters",monsterDataModels.ToList());
-            }
+            
 
-            else //(searchBy == "challengeRating")
-            {
-                float newCr;
-                if (!(search.IsNullOrWhiteSpace()))
-                {
-                    newCr = float.Parse(search);
-                    var monsterCR = db.Monsters.Where(x => x.ChallengeRating.Equals(newCr));
-                    return PartialView("_SearchMonsters",monsterCR.ToList());
-                }
-                else
-                {
-                    var monsterCR = db.Monsters;
-                    return PartialView("_SearchMonsters", monsterCR.ToList());
-                }
+          
 
-            }
-         
         }
+         
+        
+
+       // [HttpGet]
+        public ActionResult SearchMonstersCr(string search)
+        {
+            //TODO: Create Method for searching monsters by ExperiencePoints rounded to the nearest 50
+            int newCr;
+            if (!(search.IsNullOrWhiteSpace()))
+          //  if(!(searchCr == null))
+            {
+                newCr = int.Parse(search);
+                var monsterCR = db.Monsters.Where(x => x.Exp.Equals(newCr));
+                return PartialView("_SearchMonsters", monsterCR.ToList());
+            }
+         //   else
+            {
+                var monsterCR = db.Monsters;
+                return View("Error");
+            }
+          
+        }
+        //Search Monster Exp
+        public ICollection<MonsterDataModel> SearchMonstersXP(int expParameter)
+        {
+            var monsterExp = db.Monsters.Where(x => x.Exp.Equals(expParameter));
+            return monsterExp.ToList();
+        }
+
+
+
 
         // GET: MonsterDataModels
         public ActionResult Index()
@@ -178,5 +193,8 @@ namespace MonsterMVC.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+        
     }
 }

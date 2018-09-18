@@ -11,5 +11,6 @@ namespace MonsterMVC.Domain.Data
         public string Name { get; set; }
         public float ChallengeRating { get; set; }
         public int UrlId { get; set; }
+        public int Exp { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MonsterMVC.Domain.Data.MonsterDataModel>
+﻿@model IEnumerable<MonsterMVC.Domain.Data.EncounterParam>
 
 @{
     ViewBag.Title = "Index";
@@ -12,33 +12,27 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.AverageLvl)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ChallengeRating)
+            @Html.DisplayNameFor(model => model.Difficulty)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UrlId)
+            @Html.DisplayNameFor(model => model.NumberOfMonsters)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Exp)
-
-        </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.AverageLvl)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ChallengeRating)
+            @Html.DisplayFor(modelItem => item.Difficulty)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UrlId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Exp)
+            @Html.DisplayFor(modelItem => item.NumberOfMonsters)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

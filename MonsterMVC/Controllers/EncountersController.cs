@@ -71,11 +71,13 @@ namespace MonsterMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Encounter encounter = db.Encounters.Find(id);
             if (encounter == null)
             {
                 return HttpNotFound();
             }
+
             return View(encounter);
         }
 
@@ -92,6 +94,7 @@ namespace MonsterMVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(encounter);
         }
 
@@ -102,11 +105,13 @@ namespace MonsterMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             Encounter encounter = db.Encounters.Find(id);
             if (encounter == null)
             {
                 return HttpNotFound();
             }
+
             return View(encounter);
         }
 
@@ -127,9 +132,18 @@ namespace MonsterMVC.Controllers
             {
                 db.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
-        
+        public ActionResult AlterHitPoints(int hp, int damage)
+        {
+            var monster = new ActiveMonster();
+            monster.HealthPoints = hp;
+            hp = hp - damage;
+
+            return View("Details");
+
+        }
     }
 }

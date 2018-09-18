@@ -56,7 +56,7 @@ namespace MonsterMVC.Controllers
             {
                 db.ActiveMonsters.Add(activeMonster);
                 db.SaveChanges();
-                return RedirectToAction("Details","Encounters", new{id = activeMonster.EncounterId});
+                return RedirectToAction("Details", "Encounters", new { id = activeMonster.EncounterId });
             }
 
             ViewBag.EncounterId = new SelectList(db.Encounters, "Id", "Id", activeMonster.EncounterId);
