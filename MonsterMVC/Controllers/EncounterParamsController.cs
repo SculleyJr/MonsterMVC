@@ -72,44 +72,231 @@ namespace MonsterMVC.Controllers
 
             AddMonstersToStack(numberOfMonsters, monsterStack, experienceParameter);
 
-//            while (!ExperienceTotalIsInTargetRange(monsterStack, experienceAllowance))
-//            {
-//                var stackTotalExp = CalculateStackTotalExp(monsterStack);
-//
-//                PopMonsterFromStack(monsterStack);
-//
-//                var alteredExperienceParameter = AlterSearchParameter(experienceParameter, stackTotalExp, experienceAllowance);
-//
-//                var temporaryMonsterList = GetListOfMonstersByExperience(alteredExperienceParameter).ToList();
-//
-//                PushMonsterToStack(monsterStack, temporaryMonsterList[GetRandomNumber(temporaryMonsterList.Count)]);
-//
-//            }
+            if (!ExperienceTotalIsInTargetRange(monsterStack, experienceAllowance))
+            {
+                var stackTotalExp = CalculateStackTotalExp(monsterStack);
+
+                PopMonsterFromStack(monsterStack);
+
+                var alteredExperienceParameter = AlterSearchParameter(experienceParameter, stackTotalExp, experienceAllowance);
+
+                var temporaryMonsterList = GetListOfMonstersByExperience(alteredExperienceParameter).ToList();
+
+                PushMonsterToStack(monsterStack, temporaryMonsterList[GetRandomNumber(temporaryMonsterList.Count)]);
+
+            }
 
             return monsterStack;
         }
 
-        //public int AlterSearchParameter(int experienceParameter, int stackTotalExp, int experienceAllowance )
-        //{
-        //    var comparisonEnum = MonsterExperienceValuesEnum.Tier1;
-        //    while (experienceParameter !=(int)comparisonEnum)
-        //    {
-        //        comparisonEnum++;
-        //    }
+        public int AlterSearchParameter(int experienceParameter, int stackTotalExp, int experienceAllowance)
+        {
+            int alteredSearchParameter = 0;
+            if (stackTotalExp < experienceAllowance)
+            {
+                switch (experienceParameter)
+                {
+                    case 0:
+                        alteredSearchParameter = 10;
+                        break;
+                    case 10:
+                        alteredSearchParameter = 25;
+                        break;
+                    case 25:
+                        alteredSearchParameter = 50;
+                        break;
+                    case 50:
+                        alteredSearchParameter = 100;
+                        break;
+                    case 100:
+                        alteredSearchParameter = 200;
+                        break;
+                    case 200:
+                        alteredSearchParameter = 450;
+                        break;
+                    case 450:
+                        alteredSearchParameter = 700;
+                        break;
+                    case 700:
+                        alteredSearchParameter = 1100;
+                        break;
+                    case 1100:
+                        alteredSearchParameter = 1800;
+                        break;
+                    case 1800:
+                        alteredSearchParameter = 2300;
+                        break;
+                    case 2300:
+                        alteredSearchParameter = 2900;
+                        break;
+                    case 2900:
+                        alteredSearchParameter = 3900;
+                        break;
+                    case 3900:
+                        alteredSearchParameter = 5000;
+                        break;
+                    case 5000:
+                        alteredSearchParameter = 5900;
+                        break;
+                    case 5900:
+                        alteredSearchParameter = 7200;
+                        break;
+                    case 7200:
+                        alteredSearchParameter = 11500;
+                        break;
+                    case 11500:
+                        alteredSearchParameter = 13000;
+                        break;
+                    case 13000:
+                        alteredSearchParameter = 15000;
+                        break;
+                    case 15000:
+                        alteredSearchParameter = 18000;
+                        break;
+                    case 18000:
+                        alteredSearchParameter = 20000;
+                        break;
+                    case 20000:
+                        alteredSearchParameter = 22000;
+                        break;
+                    case 22000:
+                        alteredSearchParameter = 25000;
+                        break;
+                    case 25000:
+                        alteredSearchParameter = 33000;
+                        break;
+                    case 33000:
+                        alteredSearchParameter = 41000;
+                        break;
+                    case 41000:
+                        alteredSearchParameter = 50000;
+                        break;
+                    case 50000:
+                        alteredSearchParameter = 62000;
+                        break;
+                    case 62000:
+                        alteredSearchParameter = 75000;
+                        break;
+                    case 75000:
+                        alteredSearchParameter = 90000;
+                        break;
+                    case 90000:
+                        alteredSearchParameter = 105000;
+                        break;
+                    case 105000:
+                        alteredSearchParameter = 120000;
+                        break;
+                    case 120000:
+                        alteredSearchParameter = 135000;
+                        break;
+                    case 135000:
+                        alteredSearchParameter = 155000;
+                        break;
+                }
+            }
 
-        //    if (stackTotalExp > experienceAllowance)
-        //    {
-        //        comparisonEnum--;
-        //    }
-        //    else
-        //    {
-        //        comparisonEnum++;
-        //    }
+            if (stackTotalExp > experienceAllowance)
+            {
+                switch (experienceParameter)
+                {
+                    case 155000:
+                        alteredSearchParameter = 135000;
+                        break;
+                    case 135000:
+                        alteredSearchParameter = 120000;
+                        break;
+                    case 120000:
+                        alteredSearchParameter = 105000;
+                        break;
+                    case 105000:
+                        alteredSearchParameter = 90000;
+                        break;
+                    case 90000:
+                        alteredSearchParameter = 75000;
+                        break;
+                    case 75000:
+                        alteredSearchParameter = 62000;
+                        break;
+                    case 62000:
+                        alteredSearchParameter = 50000;
+                        break;
+                    case 50000:
+                        alteredSearchParameter = 41000;
+                        break;
+                    case 41000:
+                        alteredSearchParameter = 33000;
+                        break;
+                    case 33000:
+                        alteredSearchParameter = 25000;
+                        break;
+                    case 25000:
+                        alteredSearchParameter = 22000;
+                        break;
+                    case 22000:
+                        alteredSearchParameter = 20000;
+                        break;
+                    case 20000:
+                        alteredSearchParameter = 18000;
+                        break;
+                    case 18000:
+                        alteredSearchParameter = 15000;
+                        break;
+                    case 15000:
+                        alteredSearchParameter = 13000;
+                        break;
+                    case 13000:
+                        alteredSearchParameter = 11500;
+                        break;
+                    case 11500:
+                        alteredSearchParameter = 7200;
+                        break;
+                    case 7200:
+                        alteredSearchParameter = 5900;
+                        break;
+                    case 5900:
+                        alteredSearchParameter = 5000;
+                        break;
+                    case 5000:
+                        alteredSearchParameter = 3900;
+                        break;
+                    case 3900:
+                        alteredSearchParameter = 2900;
+                        break;
+                    case 2900:
+                        alteredSearchParameter = 2300;
+                        break;
+                    case 2300:
+                        alteredSearchParameter = 1800;
+                        break;
+                    case 1800:
+                        alteredSearchParameter = 1100;
+                        break;
+                    case 1100:
+                        alteredSearchParameter = 700;
+                        break;
+                    case 700:
+                        alteredSearchParameter = 450;
+                        break;
+                    case 450:
+                        alteredSearchParameter = 200;
+                        break;
+                    case 200:
+                        alteredSearchParameter = 100;
+                        break;
+                    case 100:
+                        alteredSearchParameter = 50;
+                        break;
+                    case 50:
+                        alteredSearchParameter = 25;
+                        break;
+                    case 25:
+                        alteredSearchParameter = 10;
+                        break;
+                }
+            }
 
-        //    var alteredSearchParameter = (int)comparisonEnum;
-
-        //    return alteredSearchParameter;
-        //}
+            return alteredSearchParameter;
+        }
 
         public bool ExperienceTotalIsInTargetRange(Stack<MonsterDataModel> monsterStack, int encounterXpAllowance)
         {

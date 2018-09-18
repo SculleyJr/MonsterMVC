@@ -76,6 +76,7 @@ namespace MonsterMVC.Controllers
         {
             var encounterParamController = new EncounterParamsController();
             var activeMonsterController = new ActiveMonstersController();
+            var monsterController = new MonsterController();
             if (ModelState.IsValid)
             {
                 db.Encounters.Add(encounter);
@@ -83,7 +84,9 @@ namespace MonsterMVC.Controllers
                 var monsters = encounterParamController.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
                 foreach (var monster in monsters)
                 {
-                    activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, 10);
+                    var apiMonster = monsterController.GetMonsterForHealth(monster.UrlId);
+                    var health = apiMonster.Result.HitPoints;
+                    activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, health);
                 }
                 
                 return RedirectToAction("Details", new { id = encounter.Id });

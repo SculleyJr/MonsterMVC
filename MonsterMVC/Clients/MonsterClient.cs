@@ -15,20 +15,23 @@ namespace MonsterMVC.Clients
         private readonly IRestClient _client;
         public MonsterClient()
         {
-            _client = new RestClient(ConfigurationManager.AppSettings["Dnd5eapiBaseUrl"]);
+            _client = new RestClient(ConfigurationManager.AppSettings["Dnd5eapiBaseUrl"]) {Timeout = 500};
         }
         public async Task<Monster> GetMonster(int id)
         {
             var request = new RestRequest("/monsters/{id}", Method.GET);
             request.AddUrlSegment("id", id);
-            //request.Parameters.Add(new Parameter()
-            //{
-            //    Name = "id",
-            //    Type = ParameterType.QueryString,
-            //    Value = id
-            //});
-            var response = await _client.ExecuteTaskAsync(request);
-            return JsonConvert.DeserializeObject<Monster>(response.Content);
+
+            try
+            {
+                var response = await _client.ExecuteTaskAsync(request);
+                return JsonConvert.DeserializeObject<Monster>(response.Content);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
     }
