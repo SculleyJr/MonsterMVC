@@ -72,44 +72,44 @@ namespace MonsterMVC.Controllers
 
             AddMonstersToStack(numberOfMonsters, monsterStack, experienceParameter);
 
-            while (!ExperienceTotalIsInTargetRange(monsterStack, experienceAllowance))
-            {
-                var stackTotalExp = CalculateStackTotalExp(monsterStack);
-
-                PopMonsterFromStack(monsterStack);
-
-                var alteredExperienceParameter = AlterSearchParameter(experienceParameter, stackTotalExp, experienceAllowance);
-
-                var temporaryMonsterList = GetListOfMonstersByExperience(alteredExperienceParameter).ToList();
-
-                PushMonsterToStack(monsterStack, temporaryMonsterList[GetRandomNumber(temporaryMonsterList.Count)]);
-
-            }
+//            while (!ExperienceTotalIsInTargetRange(monsterStack, experienceAllowance))
+//            {
+//                var stackTotalExp = CalculateStackTotalExp(monsterStack);
+//
+//                PopMonsterFromStack(monsterStack);
+//
+//                var alteredExperienceParameter = AlterSearchParameter(experienceParameter, stackTotalExp, experienceAllowance);
+//
+//                var temporaryMonsterList = GetListOfMonstersByExperience(alteredExperienceParameter).ToList();
+//
+//                PushMonsterToStack(monsterStack, temporaryMonsterList[GetRandomNumber(temporaryMonsterList.Count)]);
+//
+//            }
 
             return monsterStack;
         }
 
-        public int AlterSearchParameter(int experienceParameter, int stackTotalExp, int experienceAllowance )
-        {
-            var comparisonEnum = MonsterExperienceValuesEnum.Tier1;
-            while (experienceParameter !=(int)comparisonEnum)
-            {
-                comparisonEnum++;
-            }
+        //public int AlterSearchParameter(int experienceParameter, int stackTotalExp, int experienceAllowance )
+        //{
+        //    var comparisonEnum = MonsterExperienceValuesEnum.Tier1;
+        //    while (experienceParameter !=(int)comparisonEnum)
+        //    {
+        //        comparisonEnum++;
+        //    }
 
-            if (stackTotalExp > experienceAllowance)
-            {
-                comparisonEnum--;
-            }
-            else
-            {
-                comparisonEnum++;
-            }
+        //    if (stackTotalExp > experienceAllowance)
+        //    {
+        //        comparisonEnum--;
+        //    }
+        //    else
+        //    {
+        //        comparisonEnum++;
+        //    }
 
-            var alteredSearchParameter = (int)comparisonEnum;
+        //    var alteredSearchParameter = (int)comparisonEnum;
 
-            return alteredSearchParameter;
-        }
+        //    return alteredSearchParameter;
+        //}
 
         public bool ExperienceTotalIsInTargetRange(Stack<MonsterDataModel> monsterStack, int encounterXpAllowance)
         {
@@ -483,14 +483,14 @@ namespace MonsterMVC.Controllers
                 }
             }
 
+
             if (comparisonValOne % averageMonsterExperience > averageMonsterExperience % comparisonValTwo )
             {
                 return comparisonValTwo;
             }
-            else
-            {
-                return comparisonValOne;
-            }
+
+            return comparisonValOne;
+
         }
 
     }
