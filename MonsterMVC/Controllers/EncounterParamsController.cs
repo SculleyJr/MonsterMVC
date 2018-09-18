@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
@@ -19,6 +20,9 @@ namespace MonsterMVC.Controllers
 
     public class EncounterParamsController : Controller
     {
+
+        private Random _randomGenerator = new Random();
+
         public ActionResult TestView()
         {
             return View();
@@ -129,6 +133,7 @@ namespace MonsterMVC.Controllers
             for (int i = 0; i < numberOfMonsters; i++)
             {
                 PushMonsterToStack(monsterStack, monsterList[GetRandomNumber(monsterList.Count)]);
+
             }
         }
 
@@ -139,6 +144,7 @@ namespace MonsterMVC.Controllers
         public void PushMonsterToStack(Stack<MonsterDataModel> monsterStack, MonsterDataModel monster)
         {
             monsterStack.Push(monster);
+            System.Diagnostics.Debug.WriteLine(monster);
         }
 
         public Stack<MonsterDataModel> CreateMonsterStack()
@@ -149,8 +155,7 @@ namespace MonsterMVC.Controllers
 
         public int GetRandomNumber(int range)
         {
-            Random rnd = new Random();
-            int number = rnd.Next(1,range);
+            int number = _randomGenerator.Next(1,range);
             return number;
         }
 
@@ -280,7 +285,12 @@ namespace MonsterMVC.Controllers
                
                 if (expectedEnum > (int)value)
                 {
-                    return (int)value;
+                    continue;
+                }
+
+                if (expectedEnum <= (int) value)
+                {
+                    return (int) value;
                 }
                
             }
