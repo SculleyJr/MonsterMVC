@@ -77,9 +77,8 @@ namespace MonsterMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateFromRandom([Bind(Include = "Id")] Encounter encounter, int numberOfMonsters, int averagePlayerLevel)
         {
-            var encounterParamController = new EncounterParamsController();
             var activeMonsterController = new ActiveMonstersController();
-            var monsterController = new MonsterController();
+
             if (ModelState.IsValid)
             {
                 db.Encounters.Add(encounter);
@@ -87,9 +86,9 @@ namespace MonsterMVC.Controllers
                 var monsters = _generateRandomEncounterService.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
                 foreach (var monster in monsters)
                 {
-                    var apiMonster = monsterController.GetMonsterForHealth(monster.UrlId);
-                    var health = apiMonster.Result.HitPoints;
-                    activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, health);
+                    //var apiMonster = monsterController.GetMonsterForHealth(monster.UrlId);
+                    //var health = apiMonster.Result.HitPoints;
+                    activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, 10);
                 }
                 
                 return RedirectToAction("Details", new { id = encounter.Id });
