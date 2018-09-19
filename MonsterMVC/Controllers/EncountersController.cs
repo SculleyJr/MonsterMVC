@@ -14,13 +14,18 @@ namespace MonsterMVC.Controllers
         private DiceRollerService _diceRollerServce = new DiceRollerService();
 
         private MonsterDbContext db = new MonsterDbContext();
+
+     
+
         [HttpPost]
-        public ActionResult DiceRoller(int numberOfDice, int diceRolled)
+        public ActionResult DiceRoller(int numberOfDice, int typeOfDice,int encounterId)
         {
-            var result = _diceRollerServce.DiceRoller(numberOfDice, diceRolled);
+            var encounter = db.Encounters.Find(encounterId);
+
+            var result = _diceRollerServce.DiceRoller(numberOfDice, typeOfDice);
             ViewBag.result = result;
 
-            return PartialView("_DiceRoller", result);
+          return RedirectToAction("Details" , new{id = encounter.Id});
         }
 
         // GET: Encounters

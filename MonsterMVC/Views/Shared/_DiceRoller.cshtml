@@ -1,9 +1,12 @@
-﻿@Html.BeginForm("DiceRoller", "Encounter", FormMethod.Post)
+﻿@model MonsterMVC.Domain.Data.Encounter
+@Html.BeginForm("DiceRoller", "Encounters", FormMethod.Post)
 <form method="POST">
 	<label for="numberOfDice">Number of Dice</label>
 	<input type="number" id="numberOdDice" name="numberOfDice" />
 	<label for="typeOfDice">Sides on Dice</label>
 	<input type="number" id="typeOfDice" name="typeOfDice" />
-	<input type="submit" />
-	<p>ViewBag.Result</p>
+    <input type="submit" />
+    @Html.Hidden("encounterId",Model.Id)
+   
+    <p>Result @ViewContext.Controller.ViewBag.result</p>
 </form>
