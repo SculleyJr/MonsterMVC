@@ -1,15 +1,18 @@
-﻿@model MonsterMVC.Domain.Data.Encounter
+﻿@using MonsterMVC.Domain.Data
+@model MonsterMVC.Domain.Data.Encounter
 
 
 @{
-	ViewBag.Title = "Details";
+    ViewBag.Title = "Details";
+    ViewDataDictionary<MonsterDataModel> additionalData = new ViewDataDictionary<MonsterDataModel>();
+    additionalData.Add("EncounterId", Model.Id);
 }
 
 <h2>Details @Model.Id</h2>
 
 <div id="partial">
     @{
-        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Acolyte" });
+        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { id = Model.Id, search = "Acolyte" });
     }
 </div>
 <div>

@@ -33,8 +33,9 @@ namespace MonsterMVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult SearchMonsters(string search)
+        public ActionResult SearchMonsters(int id, string search)
         {
+                ViewBag.EncounterId = id;
           
                 var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
                 
@@ -46,7 +47,6 @@ namespace MonsterMVC.Controllers
        // [HttpGet]
         public ActionResult SearchMonstersCr(string search)
         {
-            //TODO: Create Method for searching monsters by ExperiencePoints rounded to the nearest 50
             int newCr;
             if (!(search.IsNullOrWhiteSpace()))
           //  if(!(searchCr == null))

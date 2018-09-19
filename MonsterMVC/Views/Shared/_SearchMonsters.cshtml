@@ -1,6 +1,6 @@
 ﻿@using System.Web.UI.WebControls.Expressions
 @model IEnumerable<MonsterMVC.Domain.Data.MonsterDataModel>
-
+@{ var encounterId = ViewBag.EncounterId;}
 
 @using (Html.BeginForm("SearchMonsters", "MonsterDataModels", FormMethod.Get))
 {
@@ -49,9 +49,9 @@
             <td>
                 @using (Html.BeginForm("CreateFromSearch", "ActiveMonsters", FormMethod.Post))
                 {
-                    
-                    @Html.Hidden("encounterId", 1);
+                   
                     @Html.Hidden("monsterId", item.Id);
+                    <input type="hidden" name="encounterId" value="@ViewBag.EncounterID"/>
                     <input type="submit" value="Add To Encounter" class="btn btn-default" />
                 }
             </td>
