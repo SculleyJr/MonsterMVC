@@ -18,31 +18,21 @@
     <dl class="dl-horizontal"></dl>
 </div>
 
-<table>
+<table id="monsterPartials">
     @{int i;}
+    @{int j = 1;}
 
     @foreach (var item in Model.ActiveMonsters)
     {
-    <div id="monsterPartials">
-        @{ i = item.MonsterId;
-            ; }
-        <div id="monsterPartial@(i)">
-            <tr>
+            <tr id="monsterPartial@(j)">
                 @{ Html.RenderPartial("_HealthForm", item); }
-                @*<td>
-                @Html.ActionLink("Edit", "Edit", "ActiveMonsters", new { id = item.Id }, null)
-            </td>*@
-
-
             </tr>
-        </div>
-    </div>
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-                crossorigin="anonymous"></script>
+        @(j++)
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script>
             var list = [];
             $(document).ready(function () {
+                @(i = item.MonsterId)
                 var search = @(i);
 
                 var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
