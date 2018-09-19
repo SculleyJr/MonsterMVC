@@ -1,6 +1,4 @@
-﻿@using MonsterMVC.Domain.Data
-@using System.Collections.Generic
-@model MonsterMVC.Domain.Data.Encounter
+﻿@model MonsterMVC.Domain.Data.Encounter
 
 
 @{
@@ -25,15 +23,20 @@
 
     @foreach (var item in Model.ActiveMonsters)
     {
-        <tr>
-            @{ Html.RenderPartial("_HealthForm", item); }
-            <td>
+    <div id="monsterPartials">
+        @{ i = item.MonsterId;
+            ; }
+        <div id="monsterPartial@(i)">
+            <tr>
+                @{ Html.RenderPartial("_HealthForm", item); }
+                @*<td>
                 @Html.ActionLink("Edit", "Edit", "ActiveMonsters", new { id = item.Id }, null)
-            </td>
+            </td>*@
 
-            @{ i = item.MonsterId;
-                ; }
-        </tr>
+
+            </tr>
+        </div>
+    </div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"
                 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                 crossorigin="anonymous"></script>
@@ -60,7 +63,3 @@
 <div id="MonsterCards">
 
 </div>
-@*<p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@

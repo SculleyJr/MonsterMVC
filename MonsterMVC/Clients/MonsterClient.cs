@@ -2,11 +2,9 @@
 using Newtonsoft.Json;
 using RestSharp;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+
 namespace MonsterMVC.Clients
 {
     public class MonsterClient
@@ -14,7 +12,7 @@ namespace MonsterMVC.Clients
         private readonly IRestClient _client;
         public MonsterClient()
         {
-            _client = new RestClient(ConfigurationManager.AppSettings["Dnd5eapiBaseUrl"]) {Timeout = 500};
+            _client = new RestClient(ConfigurationManager.AppSettings["Dnd5eapiBaseUrl"]);
         }
         public async Task<Monster> GetMonster(int id)
         {

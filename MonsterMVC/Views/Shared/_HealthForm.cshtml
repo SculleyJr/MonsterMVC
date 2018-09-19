@@ -9,19 +9,20 @@
             
 <td id="damage">
     @Html.TextBox("Damage", null, new { @class = "form-control" })
-    <input type="submit" value="Save" class="btn btn-default" onclick="location.href = '@Url.Action("Edit", "ActiveMonsters")'" />
+    <input id="damage" type="submit" value="Save" class="btn btn-default damage@(Model.Id)"  />
 </td>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 <script> 
     $(document).ready(function () { 
-        $('.damage').click(function () { 
+        $('.damage@(Model.Id)').click(function () {
 
-            //var searchByName = $('#searchByName').val(); 
-                       
+            var damage = $('input#Damage').val();
+            var url = "@Html.Raw(Url.Action("AlterHealth", "ActiveMonsters", new { id = Model.Id, health = "sempar" }))";
+            url = url.replace("sempar", damage);
 
-            var url = "@Html.Raw(Url.Action("Edit", "ActiveMonsters", new { id = Model.Id}))"; 
-
-                        
-            $('#partial').load(url); 
+            $('#monsterPartial@(Model.Id)').load(url); 
         }); 
     }); 
 </script> 
