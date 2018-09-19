@@ -52,7 +52,6 @@
     <Compile Include="DomainModel\Action.cs" />
     <Compile Include="DomainModel\Monster.cs" />
     <Compile Include="DomainModel\SpecialAbility.cs" />
-    <Compile Include="Enums\MonsterExperienceValuesEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

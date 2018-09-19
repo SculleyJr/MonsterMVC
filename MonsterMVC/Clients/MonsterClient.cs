@@ -7,7 +7,6 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-
 namespace MonsterMVC.Clients
 {
     public class MonsterClient

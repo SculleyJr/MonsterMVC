@@ -1,11 +1,6 @@
 ﻿using MonsterMVC.Clients;
-using MonsterMVC.Domain.Data;
 using MonsterMVC.Domain.DomainModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace MonsterMVC.Controllers

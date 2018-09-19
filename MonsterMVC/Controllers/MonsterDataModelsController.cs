@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
 using MonsterMVC.Clients;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
-using MonsterMVC.Domain.Data.Abstract;
-using MonsterMVC.Domain.DomainModel;
 
 namespace MonsterMVC.Controllers
 {

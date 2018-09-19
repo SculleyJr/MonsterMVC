@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MonsterMVC.Domain.Data
+﻿namespace MonsterMVC.Domain.Data
 {
     public class MonsterDataModel
     {

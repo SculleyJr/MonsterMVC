@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
@@ -78,6 +74,7 @@ namespace MonsterMVC.Controllers
         public ActionResult CreateFromRandom([Bind(Include = "Id")] Encounter encounter, int numberOfMonsters, int averagePlayerLevel)
         {
             var activeMonsterController = new ActiveMonstersController();
+            //var monsterController = new MonsterController();
 
             if (ModelState.IsValid)
             {
