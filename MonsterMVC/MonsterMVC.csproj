@@ -358,6 +358,10 @@
       <Project>{5253e544-3669-4833-9f61-7c3c4edbe411}</Project>
       <Name>MonsterMVC.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MonsterMVC.Service\MonsterMVC.Service.csproj">
+      <Project>{a2d5305b-d245-448e-ae8e-f035508e0ef5}</Project>
+      <Name>MonsterMVC.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201809071759455_Added Monster Database.resx">

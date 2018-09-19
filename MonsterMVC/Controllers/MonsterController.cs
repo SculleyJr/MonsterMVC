@@ -25,6 +25,12 @@ namespace MonsterMVC.Controllers
 
             return PartialView("_MonsterCard", monster);
         }
+        public async Task<Monster> GetMonsterForHealth(int id)
+        {
+            var monster = await _monsterClient.GetMonster(id);
+
+            return monster;
+        }
 
     }
 }

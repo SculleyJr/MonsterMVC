@@ -1,0 +1,31 @@
+﻿@model MonsterMVC.Domain.Data.EncounterParam
+
+@{
+    ViewBag.Title = "TestView";
+}
+
+<h2>TestView</h2>
+
+
+@using (Html.BeginForm("TestResultView", "EncounterParams", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+
+    <form method="POST">
+        <label for="numberOfMonsters">Number of Monsters</label>
+        <input type="number" id="numberOfMonsters" name="numberOfMonsters" />
+        <label for="averagePlayerLevel">Average Player Level</label>
+        <input type="number" id="averagePlayerLevel" name="averagePlayerLevel" />
+        <label for="encounterId">Encounter ID</label>
+        <input type="number" id="encounterId" name="encounterId" />
+        <input type="submit" />
+    </form>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
