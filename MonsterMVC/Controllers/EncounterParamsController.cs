@@ -15,11 +15,11 @@ namespace MonsterMVC.Controllers
             return View();
         }
 
-        public ActionResult TestResultView(int numberOfMonsters, int averagePlayerLevel)
+        public ActionResult TestResultView(int numberOfMonsters, int averagePlayerLevel, char encounterDifficulty)
         {
 
 
-          var monsters = _generateRandomEncounterService.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
+          var monsters = _generateRandomEncounterService.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel, encounterDifficulty);
 
             return View(monsters);
         }
