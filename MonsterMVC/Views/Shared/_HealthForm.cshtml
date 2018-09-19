@@ -8,17 +8,17 @@
 </td>
             
 <td id="damage">
-    @Html.TextBox("Damage", null, new { @class = "form-control" })
-    <input id="damage" type="submit" value="Save" class="btn btn-default damage@(Model.Id)"  />
+    @Html.TextBox("Damage"+Model.Id, null, new { @class = "form-control" })
+    <input id="damage@(Model.Id)" type="submit" value="Save" class="btn btn-default "  />
 </td>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script> 
     $(document).ready(function () { 
-        $('.damage@(Model.Id)').click(function () {
+        $('#damage@(Model.Id)').click(function () {
 
-            var damage = $('input#Damage').val();
+            var damage = $('input#Damage@(Model.Id)').val();
             var url = "@Html.Raw(Url.Action("AlterHealth", "ActiveMonsters", new { id = Model.Id, health = "sempar" }))";
             url = url.replace("sempar", damage);
 
