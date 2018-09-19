@@ -15,6 +15,8 @@ namespace MonsterMVC.Controllers
     {
         private MonsterDbContext db = new MonsterDbContext();
 
+        
+
         // GET: Encounters
         public ActionResult Index()
         {

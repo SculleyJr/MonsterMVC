@@ -1,6 +1,7 @@
 ﻿using MonsterMVC.Clients;
 using MonsterMVC.Domain.Data;
 using MonsterMVC.Domain.DomainModel;
+using MonsterMVC.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,5 @@ namespace MonsterMVC.Controllers
 
             return PartialView("_MonsterCard", monster);
         }
-
     }
 }

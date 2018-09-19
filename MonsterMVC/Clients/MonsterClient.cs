@@ -21,6 +21,7 @@ namespace MonsterMVC.Clients
         {
             var request = new RestRequest("/monsters/{id}", Method.GET);
             request.AddUrlSegment("id", id);
+            
             //request.Parameters.Add(new Parameter()
             //{
             //    Name = "id",
