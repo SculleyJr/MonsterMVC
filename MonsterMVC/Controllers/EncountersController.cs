@@ -14,6 +14,7 @@ namespace MonsterMVC.Controllers
         private DiceRollerService _diceRollerServce = new DiceRollerService();
 
         private MonsterDbContext db = new MonsterDbContext();
+
         [HttpPost]
         public ActionResult DiceRoller(int numberOfDice, int diceRolled)
         {
