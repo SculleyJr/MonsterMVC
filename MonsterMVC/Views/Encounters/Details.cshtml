@@ -9,7 +9,7 @@
 
 <div id="partial">
     @{
-		Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Zombie" });
+        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Acolyte" });
     }
 </div>
 <div>
@@ -27,6 +27,7 @@
 
     @foreach (var item in Model.ActiveMonsters)
     {
+
             <tr id="monsterPartial@(j)">
                 @{ Html.RenderPartial("_HealthForm", item); }
             </tr>
