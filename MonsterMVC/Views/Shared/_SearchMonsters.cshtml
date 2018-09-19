@@ -63,8 +63,19 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script>
-
-     $(document).ready(function () {
+    document.getElementById("searchCr").onkeypress = function(e) {
+        var key = e.charCode || e.keyCode || 0;     
+        if (key == 13) {
+            e.preventDefault();
+        }
+    }
+    document.getElementById("search").onkeypress = function (e) {
+        var key = e.charCode || e.keyCode || 0;
+        if (key == 13) {
+            e.preventDefault();
+        }
+    }
+    $(document).ready(function () {
          $('.searchSubmit').click(function () {
 
              var searchBy = $('#searchBy').val();
