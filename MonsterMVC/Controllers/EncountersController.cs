@@ -100,8 +100,14 @@ namespace MonsterMVC.Controllers
                 {
                     var apiMonster = await monsterClient.GetMonster(monster.UrlId);
                     var health = apiMonster.HitPoints;
+                    var hitDice = apiMonster.hHitdice;
 
+                    string[] temp = hitDice.Split('d');
+                    var diceAmount = int.Parse(temp[0]);
+                    var numberofSides = int.Parse(temp[1]);
+                    health = _diceRollerServce.DiceRoller(diceAmount, numberofSides);
                     activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, health);
+
                 }
                 
                 return RedirectToAction("Details", new { id = encounter.Id });
