@@ -15,8 +15,6 @@ namespace MonsterMVC.Controllers
 
         private MonsterDbContext db = new MonsterDbContext();
 
-     
-
         [HttpPost]
         public ActionResult DiceRoller(int numberOfDice, int typeOfDice,int encounterId)
         {
