@@ -343,6 +343,7 @@
     <Content Include="Views\EncounterParams\TestView.cshtml" />
     <Content Include="Views\EncounterParams\TestResultView.cshtml" />
     <Content Include="Views\Encounters\CreateFromRandom.cshtml" />
+    <Content Include="Views\Shared\_DiceRoller.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

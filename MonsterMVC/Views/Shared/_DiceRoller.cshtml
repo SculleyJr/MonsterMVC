@@ -1,0 +1,9 @@
+﻿@Html.BeginForm("DiceRoller", "Encounter", FormMethod.Post)
+<form method="POST">
+	<label for="numberOfDice">Number of Dice</label>
+	<input type="number" id="numberOdDice" name="numberOfDice" />
+	<label for="typeOfDice">Sides on Dice</label>
+	<input type="number" id="typeOfDice" name="typeOfDice" />
+	<input type="submit" />
+	<p>ViewBag.Result</p>
+</form>

@@ -2,20 +2,23 @@
 
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
 <h2>Details @Model.Id</h2>
 
 <div id="partial">
     @{
-        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Zombie" });
+		Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Zombie" });
     }
 </div>
 <div>
     <h4>Encounter</h4>
     <hr />
     <dl class="dl-horizontal"></dl>
+</div>
+<div>
+	@{Html.RenderPartial("_DiceRoller"); }
 </div>
 
 <table id="monsterPartials">

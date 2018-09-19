@@ -11,8 +11,17 @@ namespace MonsterMVC.Controllers
     public class EncountersController : Controller
     {
         private GenerateRandomEncounterService _generateRandomEncounterService = new GenerateRandomEncounterService();
+        private DiceRollerService _diceRollerServce = new DiceRollerService();
 
         private MonsterDbContext db = new MonsterDbContext();
+        [HttpPost]
+        public ActionResult DiceRoller(int numberOfDice, int diceRolled)
+        {
+            var result = _diceRollerServce.DiceRoller(numberOfDice, diceRolled);
+            ViewBag.result = result;
+
+            return PartialView("_DiceRoller", result);
+        }
 
         // GET: Encounters
         public ActionResult Index()
