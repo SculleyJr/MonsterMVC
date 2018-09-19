@@ -38,9 +38,6 @@ namespace MonsterMVC.Controllers
           
                 var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
                 return PartialView("_SearchMonsters",monsterDataModels.ToList());
-            
-
-          
 
         }
          

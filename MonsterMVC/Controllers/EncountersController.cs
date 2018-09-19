@@ -1,7 +1,9 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using MonsterMVC.Clients;
 using MonsterMVC.Data;
 using MonsterMVC.Domain.Data;
 using MonsterMVC.Service;
@@ -11,6 +13,8 @@ namespace MonsterMVC.Controllers
     public class EncountersController : Controller
     {
         private GenerateRandomEncounterService _generateRandomEncounterService = new GenerateRandomEncounterService();
+
+        private MonsterClient monsterClient = new MonsterClient();
 
         private MonsterDbContext db = new MonsterDbContext();
 
@@ -71,10 +75,9 @@ namespace MonsterMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateFromRandom([Bind(Include = "Id")] Encounter encounter, int numberOfMonsters, int averagePlayerLevel)
+        public async Task<ActionResult> CreateFromRandom([Bind(Include = "Id")] Encounter encounter, int numberOfMonsters, int averagePlayerLevel)
         {
             var activeMonsterController = new ActiveMonstersController();
-            //var monsterController = new MonsterController();
 
             if (ModelState.IsValid)
             {
@@ -83,10 +86,10 @@ namespace MonsterMVC.Controllers
                 var monsters = _generateRandomEncounterService.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
                 foreach (var monster in monsters)
                 {
-                    //var apiMonster = monsterController.GetMonsterForHealth(monster.UrlId);
-                    //var health = apiMonster.Result.HitPoints;
+                    var apiMonster = await monsterClient.GetMonster(monster.UrlId);
+                    var health = apiMonster.HitPoints;
 
-                    activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, 10);
+                    activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, health);
                 }
                 
                 return RedirectToAction("Details", new { id = encounter.Id });
