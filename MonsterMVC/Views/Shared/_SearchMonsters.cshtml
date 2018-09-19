@@ -1,25 +1,15 @@
 ﻿@using System.Web.UI.WebControls.Expressions
 @model IEnumerable<MonsterMVC.Domain.Data.MonsterDataModel>
 
+
 @using (Html.BeginForm("SearchMonsters", "MonsterDataModels", FormMethod.Get))
 {
     <b>Search By Name</b>
-
-    @*     @Html.RadioButton("searchBy", "monsterName", true) *@
-    @*     <text>Monster Name</text> *@
-    @*     @Html.RadioButton("searchBy", "challengeRating", true) *@
-    @*     <text>Challenge Rating</text> *@
-    @*     <br /> *@
     @Html.TextBox("search")<input id="search" class="searchSubmit" type="button" value="Search" />
 }
 @using (Html.BeginForm("SearchMonstersCr", "MonsterDataModels", FormMethod.Get))
 {
     <b>Search By Experience</b>
-
-    @*     @Html.RadioButton("searchBy", "monsterName", true) *@
-    @*     <text>Monster Name</text> *@
-    @*     @Html.RadioButton("searchBy", "challengeRating", true) *@
-    @*     <text>Challenge Rating</text> *@
     <br />
     @Html.TextBox("searchCr")<input class="searchSubmit1" type="button" value="Search" />
 }
@@ -57,8 +47,13 @@
                 @Html.DisplayFor(modelItem => item.UrlId)
             </td>
             <td>
-                @Html.ActionLink("Add to Encounter", "Create", "ActiveMonsters", new { UrlId = item.UrlId, EncounterId = 1 }, null)
-
+                @using (Html.BeginForm("CreateFromSearch", "ActiveMonsters", FormMethod.Post))
+                {
+                    
+                    @Html.Hidden("encounterId", 1);
+                    @Html.Hidden("monsterId", item.Id);
+                    <input type="submit" value="Add To Encounter" class="btn btn-default" />
+                }
             </td>
         </tr>
     }

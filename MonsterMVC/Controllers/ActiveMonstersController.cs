@@ -74,6 +74,21 @@ namespace MonsterMVC.Controllers
             db.SaveChanges();
         }
 
+        [HttpPost]
+        public ActionResult CreateFromSearch(int encounterId, int monsterId/*, int health*/)
+        {
+            var activeMonster = new ActiveMonster();
+            activeMonster.EncounterId = encounterId;
+            activeMonster.MonsterId = monsterId;
+            activeMonster.HealthPoints = 10;
+            activeMonster.IsAlive = true;
+
+            db.ActiveMonsters.Add(activeMonster);
+            db.SaveChanges();
+
+            return RedirectToAction("Details", "Encounters", new {id = encounterId});
+        }
+
         // GET: ActiveMonsters/Edit/5
         public ActionResult Edit(int? id)
         {
