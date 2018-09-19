@@ -85,6 +85,7 @@ namespace MonsterMVC.Controllers
                 {
                     //var apiMonster = monsterController.GetMonsterForHealth(monster.UrlId);
                     //var health = apiMonster.Result.HitPoints;
+
                     activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, 10);
                 }
                 
