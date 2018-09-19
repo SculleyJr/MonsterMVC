@@ -109,16 +109,15 @@ namespace MonsterMVC.Controllers
             return View(activeMonster);
         }
 
-        public ActionResult AlterHealth(int id, int health)
+        public ActionResult AlterHealth(int monsterId, int health)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ActiveMonster activeMonster = db.ActiveMonsters.Find(id);
-            activeMonster.HealthPoints = health;
-            db.SaveChanges();
-            return PartialView("_HealthForm", activeMonster);
+           
+                var monster = db.ActiveMonsters.Find(monsterId);
+                monster.HealthPoints = health;
+                db.SaveChanges();
+
+            
+            return RedirectToAction("Details", "Encounters", new {id = monster.EncounterId});
         }
 
         // GET: ActiveMonsters/Delete/5
