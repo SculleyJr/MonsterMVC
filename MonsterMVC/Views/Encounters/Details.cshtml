@@ -1,4 +1,5 @@
-﻿@model MonsterMVC.Domain.Data.Encounter
+﻿@using MonsterMVC.Domain.Data
+@model MonsterMVC.Domain.Data.Encounter
 
 
 @{
@@ -9,7 +10,7 @@
 
 <div id="partial">
     @{
-        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Acolyte" });
+        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { id = Model.Id, search = "Acolyte" });
     }
 </div>
 <div>
@@ -18,9 +19,10 @@
     <dl class="dl-horizontal"></dl>
 </div>
 
-<table id="monsterPartials">
-    @{int i;}
-    @{int j = 1;}
+
+@{int i;}
+@{int j;}
+@(j = 1)
 
     @foreach (var item in Model.ActiveMonsters)
     {
@@ -31,14 +33,14 @@
         @(j++)
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script>
-            var list = [];
-            $(document).ready(function () {
-                @(i = item.MonsterId)
-                var search = @(i);
+                var list = [];
+                $(document).ready(function() {
+                    @(i = item.MonsterId)
+                    var search = @(i);
 
-                var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
+                    var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
 
-                url = url.replace("urlId", search);
+                    url = url.replace("urlId", search);
 
                 if (jQuery.inArray(@(i), list) === -1) {
                     $.get(url, function(data){

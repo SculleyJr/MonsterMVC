@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiceRollerService.cs" />
     <Compile Include="GenerateRandomEncounterService.cs" />
     <Compile Include="Monsters\RestSharpMonsterService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
