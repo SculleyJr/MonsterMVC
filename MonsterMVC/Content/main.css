@@ -1,0 +1,44 @@
+﻿body {
+    padding: 0;
+    background: url('/Content/images/BackgroundPattern.png');
+}
+    body.home {
+        padding: 0;
+        background: url('/Content/images/Map2.jpg') center fixed no-repeat;
+        background-size: cover;
+       
+    }
+navbar {
+    position: fixed;
+    top: 0;
+}
+.main-page {
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin: 20% auto;
+}
+
+.home-tile {
+    height: 275px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-direction: column;
+    width: 42.5%;
+    margin: 0 2.5%;
+    background-color: #FFF8F0;
+}
+.home-button {
+    border-radius: 0;
+    border: 1px solid #A5243D;
+    background-color: whitesmoke;
+    font-size: 18px;
+    color: #A5243D;
+}
+
+.home-button:hover {
+    background-color: #a5243d;
+    color: whitesmoke;
+}
