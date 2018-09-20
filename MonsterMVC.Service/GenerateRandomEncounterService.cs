@@ -12,9 +12,9 @@ namespace MonsterMVC.Service
 
         private MonsterDbContext db = new MonsterDbContext();
 
-        public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfMonsters, int averagePlayerLevel)
+        public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfPlayers, int numberOfMonsters, int averagePlayerLevel, char encounterDifficulty)
         {
-            var monsters = GenerateStackOfMonsterDataModels(numberOfMonsters, averagePlayerLevel);
+            var monsters = GenerateStackOfMonsterDataModels(numberOfPlayers, numberOfMonsters, averagePlayerLevel, encounterDifficulty);
 
             var monsterList = ConvertMonsterStackToCollection(monsters);
 
@@ -33,62 +33,29 @@ namespace MonsterMVC.Service
             return monsterCollection;
         }
 
-        public Stack<MonsterDataModel> GenerateStackOfMonsterDataModels(int numberOfMonsters, int averagePlayerLevel)
+        public Stack<MonsterDataModel> GenerateStackOfMonsterDataModels(int numberOfPlayers, int numberOfMonsters, int averagePlayerLevel, char encounterDificulty)
 
         {
-
             var monsterStack = CreateMonsterStack();
-
-
-
-            var experienceAllowance = GetExperienceAllowanceForEncounter(averagePlayerLevel);
-
-
-
+            var experienceAllowance = GetExperienceAllowanceForEncounter(numberOfPlayers, averagePlayerLevel, encounterDificulty);
             var experienceParameter = GetExperienceSearchParameter(numberOfMonsters, experienceAllowance);
-
-
 
             AddMonstersToStack(numberOfMonsters, monsterStack, experienceParameter);
 
-
-
             if (!ExperienceTotalIsInTargetRange(monsterStack, experienceAllowance))
-
             {
-
                 var stackTotalExp = CalculateStackTotalExp(monsterStack);
-
-
-
                 PopMonsterFromStack(monsterStack);
-
-
-
                 var alteredExperienceParameter = AlterSearchParameter(experienceParameter, stackTotalExp, experienceAllowance);
-
-
-
                 var temporaryMonsterList = GetListOfMonstersByExperience(alteredExperienceParameter).ToList();
-
-
-
                 PushMonsterToStack(monsterStack, temporaryMonsterList[GetRandomNumber(temporaryMonsterList.Count)]);
-
-
-
             }
-
-
-
             return monsterStack;
-
         }
 
         public int AlterSearchParameter(int experienceParameter, int stackTotalExp, int experienceAllowance)
 
         {
-
             int alteredSearchParameter = 0;
 
             if (stackTotalExp < experienceAllowance)
@@ -295,8 +262,6 @@ namespace MonsterMVC.Service
 
             }
 
-
-
             if (stackTotalExp > experienceAllowance)
 
             {
@@ -495,8 +460,6 @@ namespace MonsterMVC.Service
 
             }
 
-
-
             return alteredSearchParameter;
         }
 
@@ -506,12 +469,10 @@ namespace MonsterMVC.Service
             {
                 return false;
             }
-
             if (CalculateStackTotalExp(monsterStack) < (encounterXpAllowance - 100))
             {
                 return false;
             }
-
             return true;
         }
 
@@ -564,96 +525,176 @@ namespace MonsterMVC.Service
             return monsterExp.ToList();
         }
 
-        public int GetExperienceAllowanceForEncounter(int averagePlayerLevel/*, char encounterDifficulty*/)
+        public int GetExperienceAllowanceForEncounter(int numberOfPlayers, int averagePlayerLevel, char encounterDifficulty)
         {
-            var encounterDifficulty = 'E';
-            int xp = 100;
-
-            if (encounterDifficulty == 'E')
+           
+            int xp;
             {
                 if (averagePlayerLevel == 1)
                 {
-                    xp = 100;
+                    xp = 25;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 2)
                 {
-                    xp = 200;
+                    xp = 50;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 3)
                 {
-                    xp = 300;
+                    xp = 75;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
+
                 }
                 if (averagePlayerLevel == 4)
                 {
-                    xp = 500;
+                    xp = 125;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 5)
                 {
-                    xp = 1000;
+                    xp = 250;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 6)
                 {
-                    xp = 1200;
+                    xp = 300;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 7)
                 {
-                    xp = 1400;
+                    xp = 350;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 8)
                 {
-                    xp = 1800;
+                    xp = 450;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 9)
                 {
-                    xp = 2200;
+                    xp = 550;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 10)
                 {
-                    xp = 2400;
+                    xp = 600;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 11)
                 {
-                    xp = 3200;
+                    xp = 800;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 12)
                 {
-                    xp = 4000;
+                    xp = 1000;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 13)
                 {
-                    xp = 4400;
+                    xp = 1100;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 14)
                 {
-                    xp = 5000;
+                    xp = 1250;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 15)
                 {
-                    xp = 5600;
+                    xp = 1400;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 16)
                 {
-                    xp = 6400;
+                    xp = 1600;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 17)
                 {
-                    xp = 8000;
+                    xp = 2000;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 18)
                 {
-                    xp = 8400;
+                    xp = 2100;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 19)
                 {
-                    xp = 9600;
+                    xp = 2400;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 20)
                 {
-                    xp = 11200;
+                    xp = 2800;
+                    xp = CalculateDifficultyExperience(encounterDifficulty,xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
+
+
+                return xp = 0;
             }
 
-            return xp;
+      
+        }
+
+        public int CalculateDifficultyExperience(char encounterDifficulty, int xp)
+        {
+           
+            switch (encounterDifficulty)
+            {
+                case 'E':
+                    return xp;
+                case 'M':
+                    return xp * 2;
+                case 'H':
+                    return xp * 3;
+                case 'D':
+                    return xp * 4;
+                default:
+                    return xp;
+            }
         }
 
         public int GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)
