@@ -12,9 +12,9 @@ namespace MonsterMVC.Service
 
         private MonsterDbContext db = new MonsterDbContext();
 
-        public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfMonsters, int averagePlayerLevel)
+        public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfMonsters, int averagePlayerLevel, char encounterDifficulty)
         {
-            var monsters = GenerateStackOfMonsterDataModels(numberOfMonsters, averagePlayerLevel);
+            var monsters = GenerateStackOfMonsterDataModels(numberOfMonsters, averagePlayerLevel, encounterDifficulty);
 
             var monsterList = ConvertMonsterStackToCollection(monsters);
 
@@ -33,7 +33,7 @@ namespace MonsterMVC.Service
             return monsterCollection;
         }
 
-        public Stack<MonsterDataModel> GenerateStackOfMonsterDataModels(int numberOfMonsters, int averagePlayerLevel)
+        public Stack<MonsterDataModel> GenerateStackOfMonsterDataModels(int numberOfMonsters, int averagePlayerLevel, char encounterDificulty)
 
         {
 
@@ -41,7 +41,7 @@ namespace MonsterMVC.Service
 
 
 
-            var experienceAllowance = GetExperienceAllowanceForEncounter(averagePlayerLevel);
+            var experienceAllowance = GetExperienceAllowanceForEncounter(averagePlayerLevel, encounterDificulty);
 
 
 
@@ -564,96 +564,318 @@ namespace MonsterMVC.Service
             return monsterExp.ToList();
         }
 
-        public int GetExperienceAllowanceForEncounter(int averagePlayerLevel/*, char encounterDifficulty*/)
+        public int GetExperienceAllowanceForEncounter(int averagePlayerLevel, char encounterDifficulty)
         {
-            var encounterDifficulty = 'E';
-            int xp = 100;
-
-            if (encounterDifficulty == 'E')
+           
+            int xp;
             {
                 if (averagePlayerLevel == 1)
                 {
                     xp = 100;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 2)
                 {
                     xp = 200;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 3)
                 {
                     xp = 300;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
+
                 }
                 if (averagePlayerLevel == 4)
                 {
                     xp = 500;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 5)
                 {
                     xp = 1000;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 6)
                 {
                     xp = 1200;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 7)
                 {
                     xp = 1400;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 8)
                 {
                     xp = 1800;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 9)
                 {
                     xp = 2200;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 10)
                 {
                     xp = 2400;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 11)
                 {
                     xp = 3200;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 12)
                 {
                     xp = 4000;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 13)
                 {
                     xp = 4400;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 14)
                 {
                     xp = 5000;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 15)
                 {
                     xp = 5600;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 16)
                 {
                     xp = 6400;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 17)
                 {
                     xp = 8000;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 18)
                 {
                     xp = 8400;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 19)
                 {
                     xp = 9600;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
                 if (averagePlayerLevel == 20)
                 {
                     xp = 11200;
+                    switch (encounterDifficulty)
+                    {
+                        case 'E':
+                            return xp;
+                        case 'M':
+                            return xp * 2;
+                        case 'H':
+                            return xp * 3;
+                        case 'D':
+                            return xp * 4;
+                    }
                 }
+
+
+                return xp = 1400;
             }
 
-            return xp;
+      
         }
 
         public int GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)

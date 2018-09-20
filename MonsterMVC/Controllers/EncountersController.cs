@@ -87,7 +87,7 @@ namespace MonsterMVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateFromRandom([Bind(Include = "Id")] Encounter encounter, int numberOfMonsters, int averagePlayerLevel)
+        public async Task<ActionResult> CreateFromRandom([Bind(Include = "Id")] Encounter encounter, int numberOfMonsters, int averagePlayerLevel, char encounterDifficulty)
         {
             var activeMonsterController = new ActiveMonstersController();
 
@@ -95,7 +95,7 @@ namespace MonsterMVC.Controllers
             {
                 db.Encounters.Add(encounter);
                 db.SaveChanges();
-                var monsters = _generateRandomEncounterService.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel);
+                var monsters = _generateRandomEncounterService.GenerateRandomEncounter(numberOfMonsters, averagePlayerLevel, encounterDifficulty);
                 foreach (var monster in monsters)
                 {
                     var apiMonster = await monsterClient.GetMonster(monster.UrlId);
