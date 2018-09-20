@@ -33,35 +33,20 @@ namespace MonsterMVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult SearchMonsters(string search)
+        public ActionResult SearchMonsters(int id, string search)
         {
-          
-                var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
+                ViewBag.EncounterId = id;
+                if (int.TryParse(search, out int exp))
+                {
+                    var monsterCR = db.Monsters.Where(x => x.Exp.Equals(exp));
+                    return PartialView("_SearchMonsters", monsterCR.ToList());
+                }
                 
-                return PartialView("_SearchMonsters",monsterDataModels.ToList());
+                var monsterDataModels = db.Monsters.Where(x => x.Name.Contains(search));
+                return PartialView("_SearchMonsters", monsterDataModels.ToList());
+               
         }
-         
-        
 
-       // [HttpGet]
-        public ActionResult SearchMonstersCr(string search)
-        {
-            //TODO: Create Method for searching monsters by ExperiencePoints rounded to the nearest 50
-            int newCr;
-            if (!(search.IsNullOrWhiteSpace()))
-          //  if(!(searchCr == null))
-            {
-                newCr = int.Parse(search);
-                var monsterCR = db.Monsters.Where(x => x.Exp.Equals(newCr));
-                return PartialView("_SearchMonsters", monsterCR.ToList());
-            }
-         //   else
-            {
-                var monsterCR = db.Monsters;
-                return View("Error");
-            }
-          
-        }
         //Search Monster Exp
         public ICollection<MonsterDataModel> SearchMonstersXP(int expParameter)
         {

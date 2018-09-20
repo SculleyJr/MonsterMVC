@@ -13,10 +13,22 @@ namespace MonsterMVC.Controllers
     public class EncountersController : Controller
     {
         private GenerateRandomEncounterService _generateRandomEncounterService = new GenerateRandomEncounterService();
+        private DiceRollerService _diceRollerServce = new DiceRollerService();
 
         private MonsterClient monsterClient = new MonsterClient();
 
         private MonsterDbContext db = new MonsterDbContext();
+
+        [HttpPost]
+        public ActionResult DiceRoller(int numberOfDice, int typeOfDice,int encounterId)
+        {
+            var encounter = db.Encounters.Find(encounterId);
+
+            var result = _diceRollerServce.DiceRoller(numberOfDice, typeOfDice);
+            ViewBag.result = result;
+
+          return RedirectToAction("Details" , new{id = encounter.Id});
+        }
 
         // GET: Encounters
         public ActionResult Index()
@@ -88,8 +100,14 @@ namespace MonsterMVC.Controllers
                 {
                     var apiMonster = await monsterClient.GetMonster(monster.UrlId);
                     var health = apiMonster.HitPoints;
+                    var hitDice = apiMonster.hHitdice;
 
+                    string[] temp = hitDice.Split('d');
+                    var diceAmount = int.Parse(temp[0]);
+                    var numberofSides = int.Parse(temp[1]);
+                    health = _diceRollerServce.DiceRoller(diceAmount, numberofSides);
                     activeMonsterController.CreateFromRandom(encounter.Id, monster.Id, health);
+
                 }
                 
                 return RedirectToAction("Details", new { id = encounter.Id });

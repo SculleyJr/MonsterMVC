@@ -1,15 +1,15 @@
 ﻿@using System.Web.UI.WebControls.Expressions
 @model IEnumerable<MonsterMVC.Domain.Data.MonsterDataModel>
-
+@{ var encounterId = ViewBag.EncounterId;}
 
 @using (Html.BeginForm("SearchMonsters", "MonsterDataModels", FormMethod.Get))
 {
     <b>Search By Name</b>
     @Html.TextBox("search")<input id="search" class="searchSubmit" type="button" value="Search" />
 }
-@using (Html.BeginForm("SearchMonstersCr", "MonsterDataModels", FormMethod.Get))
+@using (Html.BeginForm("SearchMonsters", "MonsterDataModels", FormMethod.Get))
 {
-    <b>Search By Experience</b>
+    <b>Search By Exp</b>
     <br />
     @Html.TextBox("searchCr")<input class="searchSubmit1" type="button" value="Search" />
 }
@@ -49,9 +49,9 @@
             <td>
                 @using (Html.BeginForm("CreateFromSearch", "ActiveMonsters", FormMethod.Post))
                 {
-                    
-                    @Html.Hidden("encounterId", 1);
+                   
                     @Html.Hidden("monsterId", item.Id);
+                    <input type="hidden" name="encounterId" value="@ViewBag.EncounterID"/>
                     <input type="submit" value="Add To Encounter" class="btn btn-default" />
                 }
             </td>
@@ -63,16 +63,24 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
 <script>
-
-     $(document).ready(function () {
+    document.getElementById("searchCr").onkeypress = function(e) {
+        var key = e.charCode || e.keyCode || 0;     
+        if (key == 13) {
+            e.preventDefault();
+        }
+    }
+    document.getElementById("search").onkeypress = function (e) {
+        var key = e.charCode || e.keyCode || 0;
+        if (key == 13) {
+            e.preventDefault();
+        }
+    }
+    $(document).ready(function () {
          $('.searchSubmit').click(function () {
 
-             var searchBy = $('#searchBy').val();
             var search = $('input#search').val();
 
-             var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
-
-             url = url.replace("-parameter", searchBy);
+             var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { search = "sempar" }))";
 
              url = url.replace("sempar", search);
 
@@ -86,12 +94,9 @@
     $(document).ready(function () {
         $('.searchSubmit1').click(function () {
 
-            var searchBy = $('#searchBy').val();
             var search = $('input#searchCr').val();
 
-            var url = "@Html.Raw(Url.Action("SearchMonstersCr", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
-
-            url = url.replace("-parameter", searchBy);
+            var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { search = "sempar" }))";
 
             url = url.replace("sempar", search);
 

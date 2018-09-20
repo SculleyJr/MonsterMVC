@@ -1,15 +1,18 @@
-﻿@model MonsterMVC.Domain.Data.Encounter
+﻿@using MonsterMVC.Domain.Data
+@model MonsterMVC.Domain.Data.Encounter
 
 
 @{
     ViewBag.Title = "Details";
+    ViewDataDictionary<MonsterDataModel> additionalData = new ViewDataDictionary<MonsterDataModel>();
+    additionalData.Add("EncounterId", Model.Id);
 }
 
 <h2>Details @Model.Id</h2>
 
 <div id="partial">
     @{
-        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { searchBy = "monsterName", search = "Acolyte" });
+        Html.RenderAction("SearchMonsters", "MonsterDataModels", new { id = Model.Id, search = "Acolyte" });
     }
 </div>
 <div>
@@ -17,40 +20,48 @@
     <hr />
     <dl class="dl-horizontal"></dl>
 </div>
+<div>
+    @{ Html.RenderPartial("_DiceRoller"); }
+</div>
 
-<table id="monsterPartials">
-    @{int i;}
-    @{int j = 1;}
 
-    @foreach (var item in Model.ActiveMonsters)
-    {
+@{int i;}
+@{int j;}
+@(j = 1)
 
-            <tr id="monsterPartial@(j)">
-                @{ Html.RenderPartial("_HealthForm", item); }
-            </tr>
-        @(j++)
+@foreach (var item in Model.ActiveMonsters)
+{
+    <table id="monsterPartials">
+        <tr id="monsterPartial@(j)">
+            @{ Html.RenderPartial("_HealthForm", item); }
+        </tr>
+    </table>
+    @(j++)
+    
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script>
-            var list = [];
-            $(document).ready(function () {
-                @(i = item.MonsterId)
-                var search = @(i);
+                var list = [];
+                $(document).ready(function() {
+                    @(i = item.MonsterId)
+                    var search = @(i);
 
-                var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
+                    var url = "@Html.Raw(Url.Action("GetMonster", "Monster", new {id = "urlId"}))";
 
-                url = url.replace("urlId", search);
+                    url = url.replace("urlId", search);
 
-                if (jQuery.inArray(@(i), list) === -1) {
-                    $.get(url, function(data){
-                        $('#MonsterCards').append(data);
-                    });
-                }
-                list.push(@(i));
-                console.log(list.length);
-            });
+                    if (jQuery.inArray(@(i), list) === -1) {
+                        $.get(url,
+                            function(data) {
+                                $('#MonsterCards').append(data);
+                            });
+                    }
+                    list.push(@(i));
+                    console.log(list.length);
+                });
         </script>
-    }
-</table>
+    
+}
+
 <div id="MonsterCards">
 
 </div>
