@@ -532,289 +532,137 @@ namespace MonsterMVC.Service
             {
                 if (averagePlayerLevel == 1)
                 {
-                    xp = 100;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 25;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 2)
                 {
-                    xp = 200;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 50;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 3)
                 {
-                    xp = 300;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 75;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
 
                 }
                 if (averagePlayerLevel == 4)
                 {
-                    xp = 500;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 125;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 5)
                 {
-                    xp = 1000;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 250;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 6)
                 {
-                    xp = 1200;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 300;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 7)
                 {
-                    xp = 1400;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 350;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 8)
                 {
-                    xp = 1800;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 450;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 9)
                 {
-                    xp = 2200;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 550;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 10)
                 {
-                    xp = 2400;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 600;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 11)
                 {
-                    xp = 3200;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 800;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 12)
                 {
-                    xp = 4000;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 1000;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 13)
                 {
-                    xp = 4400;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 1100;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 14)
                 {
-                    xp = 5000;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 1250;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 15)
                 {
-                    xp = 5600;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 1400;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 16)
                 {
-                    xp = 6400;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 1600;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 17)
                 {
-                    xp = 8000;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 2000;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 18)
                 {
-                    xp = 8400;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 2100;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 19)
                 {
-                    xp = 9600;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 2400;
+                    xp = CalculateDifficultyExperience(encounterDifficulty, xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
                 if (averagePlayerLevel == 20)
                 {
