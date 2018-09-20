@@ -51,6 +51,11 @@
     <Compile Include="Maps\ActiveMonsterMap.cs" />
     <Compile Include="Maps\EncounterMap.cs" />
     <Compile Include="Maps\MonsterMap.cs" />
+    <Compile Include="Migrations\201809171448312_InitialCreate.cs" />
+    <Compile Include="Migrations\201809171448312_InitialCreate.Designer.cs">
+      <DependentUpon>201809171448312_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MonsterDbContext.cs" />
     <Compile Include="MonsterDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,7 +64,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809171448312_InitialCreate.resx">
+      <DependentUpon>201809171448312_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonsterMVC.Domain\MonsterMVC.Domain.csproj">
       <Project>{5253e544-3669-4833-9f61-7c3c4edbe411}</Project>
