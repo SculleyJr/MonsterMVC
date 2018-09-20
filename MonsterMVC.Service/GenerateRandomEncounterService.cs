@@ -12,9 +12,9 @@ namespace MonsterMVC.Service
 
         private MonsterDbContext db = new MonsterDbContext();
 
-        public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfMonsters, int averagePlayerLevel, char encounterDifficulty)
+        public ICollection<MonsterDataModel> GenerateRandomEncounter(int numberOfPlayers, int numberOfMonsters, int averagePlayerLevel, char encounterDifficulty)
         {
-            var monsters = GenerateStackOfMonsterDataModels(numberOfMonsters, averagePlayerLevel, encounterDifficulty);
+            var monsters = GenerateStackOfMonsterDataModels(numberOfPlayers, numberOfMonsters, averagePlayerLevel, encounterDifficulty);
 
             var monsterList = ConvertMonsterStackToCollection(monsters);
 
@@ -33,62 +33,29 @@ namespace MonsterMVC.Service
             return monsterCollection;
         }
 
-        public Stack<MonsterDataModel> GenerateStackOfMonsterDataModels(int numberOfMonsters, int averagePlayerLevel, char encounterDificulty)
+        public Stack<MonsterDataModel> GenerateStackOfMonsterDataModels(int numberOfPlayers, int numberOfMonsters, int averagePlayerLevel, char encounterDificulty)
 
         {
-
             var monsterStack = CreateMonsterStack();
-
-
-
-            var experienceAllowance = GetExperienceAllowanceForEncounter(averagePlayerLevel, encounterDificulty);
-
-
-
+            var experienceAllowance = GetExperienceAllowanceForEncounter(numberOfPlayers, averagePlayerLevel, encounterDificulty);
             var experienceParameter = GetExperienceSearchParameter(numberOfMonsters, experienceAllowance);
-
-
 
             AddMonstersToStack(numberOfMonsters, monsterStack, experienceParameter);
 
-
-
             if (!ExperienceTotalIsInTargetRange(monsterStack, experienceAllowance))
-
             {
-
                 var stackTotalExp = CalculateStackTotalExp(monsterStack);
-
-
-
                 PopMonsterFromStack(monsterStack);
-
-
-
                 var alteredExperienceParameter = AlterSearchParameter(experienceParameter, stackTotalExp, experienceAllowance);
-
-
-
                 var temporaryMonsterList = GetListOfMonstersByExperience(alteredExperienceParameter).ToList();
-
-
-
                 PushMonsterToStack(monsterStack, temporaryMonsterList[GetRandomNumber(temporaryMonsterList.Count)]);
-
-
-
             }
-
-
-
             return monsterStack;
-
         }
 
         public int AlterSearchParameter(int experienceParameter, int stackTotalExp, int experienceAllowance)
 
         {
-
             int alteredSearchParameter = 0;
 
             if (stackTotalExp < experienceAllowance)
@@ -295,8 +262,6 @@ namespace MonsterMVC.Service
 
             }
 
-
-
             if (stackTotalExp > experienceAllowance)
 
             {
@@ -495,8 +460,6 @@ namespace MonsterMVC.Service
 
             }
 
-
-
             return alteredSearchParameter;
         }
 
@@ -506,12 +469,10 @@ namespace MonsterMVC.Service
             {
                 return false;
             }
-
             if (CalculateStackTotalExp(monsterStack) < (encounterXpAllowance - 100))
             {
                 return false;
             }
-
             return true;
         }
 
@@ -564,7 +525,7 @@ namespace MonsterMVC.Service
             return monsterExp.ToList();
         }
 
-        public int GetExperienceAllowanceForEncounter(int averagePlayerLevel, char encounterDifficulty)
+        public int GetExperienceAllowanceForEncounter(int numberOfPlayers, int averagePlayerLevel, char encounterDifficulty)
         {
            
             int xp;
@@ -857,25 +818,35 @@ namespace MonsterMVC.Service
                 }
                 if (averagePlayerLevel == 20)
                 {
-                    xp = 11200;
-                    switch (encounterDifficulty)
-                    {
-                        case 'E':
-                            return xp;
-                        case 'M':
-                            return xp * 2;
-                        case 'H':
-                            return xp * 3;
-                        case 'D':
-                            return xp * 4;
-                    }
+                    xp = 2800;
+                    xp = CalculateDifficultyExperience(encounterDifficulty,xp);
+                    xp = xp * numberOfPlayers;
+                    return xp;
                 }
 
 
-                return xp = 1400;
+                return xp = 0;
             }
 
       
+        }
+
+        public int CalculateDifficultyExperience(char encounterDifficulty, int xp)
+        {
+           
+            switch (encounterDifficulty)
+            {
+                case 'E':
+                    return xp;
+                case 'M':
+                    return xp * 2;
+                case 'H':
+                    return xp * 3;
+                case 'D':
+                    return xp * 4;
+                default:
+                    return xp;
+            }
         }
 
         public int GetAverageMonsterExperience(int totalExperienceAllowance, int numberOfMonstersInEncounter)
