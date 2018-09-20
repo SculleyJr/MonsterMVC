@@ -7,9 +7,9 @@
     <b>Search By Name</b>
     @Html.TextBox("search")<input id="search" class="searchSubmit" type="button" value="Search" />
 }
-@using (Html.BeginForm("SearchMonstersCr", "MonsterDataModels", FormMethod.Get))
+@using (Html.BeginForm("SearchMonsters", "MonsterDataModels", FormMethod.Get))
 {
-    <b>Search By Experience</b>
+    <b>Search By Exp</b>
     <br />
     @Html.TextBox("searchCr")<input class="searchSubmit1" type="button" value="Search" />
 }
@@ -78,12 +78,9 @@
     $(document).ready(function () {
          $('.searchSubmit').click(function () {
 
-             var searchBy = $('#searchBy').val();
             var search = $('input#search').val();
 
-             var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
-
-             url = url.replace("-parameter", searchBy);
+             var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { search = "sempar" }))";
 
              url = url.replace("sempar", search);
 
@@ -97,12 +94,9 @@
     $(document).ready(function () {
         $('.searchSubmit1').click(function () {
 
-            var searchBy = $('#searchBy').val();
             var search = $('input#searchCr').val();
 
-            var url = "@Html.Raw(Url.Action("SearchMonstersCr", "MonsterDataModels", new { searchBy = "-parameter", search = "sempar" }))";
-
-            url = url.replace("-parameter", searchBy);
+            var url = "@Html.Raw(Url.Action("SearchMonsters", "MonsterDataModels", new { search = "sempar" }))";
 
             url = url.replace("sempar", search);
 
