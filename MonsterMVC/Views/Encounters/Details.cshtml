@@ -22,15 +22,18 @@
 
 @{int i;}
 @{int j;}
-@(j = 1)
+<div style="display: none;">
+    @(j = 1)
+</div>
+@foreach (var item in Model.ActiveMonsters)
+{
 
-    @foreach (var item in Model.ActiveMonsters)
-    {
-
-            <tr id="monsterPartial@(j)">
-                @{ Html.RenderPartial("_HealthForm", item); }
-            </tr>
+        <tr id="monsterPartial@(j)">
+            @{ Html.RenderPartial("_HealthForm", item); }
+        </tr>
+        <div style="display: none;">
         @(j++)
+        </div>
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script>
                 var list = [];
@@ -48,11 +51,11 @@
                     });
                 }
                 list.push(@(i));
-               
+
             });
         </script>
-    }
-</table>
-<div id="MonsterCards">
+        }
+        </table>
+        <div id="MonsterCards">
 
-</div>
+        </div>
